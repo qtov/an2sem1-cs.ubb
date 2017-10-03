@@ -1,0 +1,9 @@
+www.cs.ubbcluj.ro/~bufny
+lab 1.a toate, sau cat se poate se poate copia ofc.
+2 sapt test (03.oct today)
+
+client -> sir de numere
+
+server ret suma + calc
+
+client afis
