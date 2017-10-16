@@ -1,0 +1,21 @@
+package sem1;
+
+public class SortingTask extends Task {
+
+    private int[] vector;
+
+    public SortingTask(String taskId, String descriere, int[] vector_p) {
+        super(taskId, descriere);
+
+        for (int i = 0; i < vector_p.length; i++) {
+            this.vector[i] = vector_p[i];
+        }
+    }
+
+    @Override
+    public void execute() {
+        for (int i = 0; i < this.vector.length; i++) {
+            System.out.println(this.vector[i]);
+        }
+    }
+}
