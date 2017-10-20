@@ -2,16 +2,13 @@ package sem1;
 
 import java.util.ArrayList;
 
-/**
- * Created by camelia on 10/5/2017.
- */
-public class StackContainer implements Container {
+public class QueueContainer implements Container {
     private TaskArray tasks = new TaskArray(new ArrayList<Task>());
 
     @Override
     public Task remove() {
-        Task task = tasks.get(tasks.size() - 1);
-        this.tasks.delete(tasks.size() - 1);
+        Task task = tasks.get(0);
+        this.tasks.delete(0);
         return task;
     }
 
@@ -22,7 +19,7 @@ public class StackContainer implements Container {
 
     @Override
     public int size() {
-       return this.tasks.size();
+        return this.tasks.size();
     }
 
     @Override

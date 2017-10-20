@@ -3,7 +3,12 @@ package sem1;
 /**
  * Created by camelia on 10/5/2017.
  */
-public class TaskContainerFactory implements Factory {
+public final class TaskContainerFactory implements Factory {
+    private static final TaskContainerFactory INSTANCE = new TaskContainerFactory();
+
+    private TaskContainerFactory() {
+
+    }
 
     @Override
     public Container createContainer(Strategy strategy) {
@@ -11,5 +16,9 @@ public class TaskContainerFactory implements Factory {
             return new StackContainer();
         else
             return null;
+    }
+
+    public static TaskContainerFactory getInstance() {
+        return INSTANCE;
     }
 }
