@@ -1,5 +1,7 @@
 package sem1;
 
+import java.util.Arrays;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -13,7 +15,8 @@ public class Main {
         runner.addTask(mesaj2);
         runner.addTask(mesaj3);
         runner.executeAll();
-
-
+        int[] a = {4,3,2,1};
+        SortingTask test1 = new SortingTask("1234", "qwe", a);
+        test1.execute();
     }
 }
