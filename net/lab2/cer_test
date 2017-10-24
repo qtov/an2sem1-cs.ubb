@@ -1,0 +1,8 @@
+El scie server
+
+Se cere un client TCP care se va conecta la serverul ce ruleaza pe adresa ip 172.30.0.3 port 5000.
+Serverul va accepta doar clienti care se conecteaza de pe www.scs.ubbcluj.ro.
+Dupa conectare serverul ii trimite clientului un numar reprezentat pe 2 octeti fara semn,
+numar ce reprezinta un nou port pe care clientul trebuie sa se conecteze la server.
+Clientul va initia o noua conexiune spre adresa ip a serverului (172.30.0.3) dar pe noul port.
+Pe noua conexiune serverul returneaza clientului un numar care reprezinta nota obtinuta de student la test si pe care clientul o va afisa.
