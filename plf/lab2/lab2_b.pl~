@@ -1,0 +1,37 @@
+% max(L:list, M:integer, R:integer)
+% (i,i,o)
+% L - lista initiala
+% M - elementul maxim
+% R - rezultat
+max([], M, M).
+max([H|T], M, R):-
+    H > M,
+    max(T, H, R).
+max([H|T], M, R):-
+    H @=< M,
+    max(T, M, R).
+
+% elim_aux(L:list, E:integer, R:list)
+% (i,i,o)
+% L - lista initiala
+% E - elementul de eliminat
+% R - lista rezultata dupa eliminarea elementului E
+elim_aux([], _, []).
+elim_aux([H|T], E, R):-
+    H =:= E,
+    elim_aux(T, E, R).
+elim_aux([H|T], E, R):-
+    H =\= E,
+    elim_aux(T, E, R2),
+    R = [H|R2].
+
+% elim(L:list, R:list)
+% (i,o)
+% L - lista initiala
+% R - lista rezultata dupa eliminarea elementului maxim
+elim([], []).
+elim(L, R):-
+    max(L, M),
+    elim_aux(L, M, R2),
+    R = R2.
+

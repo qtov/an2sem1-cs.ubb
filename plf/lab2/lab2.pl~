@@ -1,0 +1,11 @@
+% found(L:list, E:element, R:boolean)
+% (i,i,o)
+% L - lista de gasit in
+% E - elementul de cautat
+% R - rezultat
+found([], _, false).
+found([H|T], E, true):-
+    E =:= H.
+found([H|T], E, R):-
+    E =\= H,
+    found(T, E, R).
