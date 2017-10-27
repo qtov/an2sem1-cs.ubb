@@ -11,10 +11,9 @@ public class DelayTaskRunner extends TaskRunnerDecorator {
     public void executeOneTask() {
         try {
             Thread.sleep(3000);
+            decoratedTaskRunner.executeOneTask();
         } catch (InterruptedException e) {
             e.printStackTrace();
-            decoratedTaskRunner.executeOneTask();
-            System.out.println("task executed at " + new Date().toString());
         }
     }
 }
