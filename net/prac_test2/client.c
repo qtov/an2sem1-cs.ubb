@@ -4,11 +4,13 @@
 #include <netinet/in.h>
 #include <netinet/ip.h>
 #include <string.h>
+#include <stdlib.h>
+#include <unistd.h>
  
 int main() {
   int c;
   struct sockaddr_in server;
-  uint16_t a, b, suma, i, k;
+  int a, b, suma, i, k;
   
   
   c = socket(AF_INET, SOCK_DGRAM, 0);
@@ -20,13 +22,16 @@ int main() {
   memset(&server, 0, sizeof(server));
   server.sin_port = htons(1234);
   server.sin_family = AF_INET;
-  server.sin_addr.s_addr = inet_addr("172.30.0.3");
+  server.sin_addr.s_addr = inet_addr("127.0.0.1");
   
-  for (i = 0; i < 10000; i++) {
-    k = i + 1;
-    k = htons(k);
-    sendto(c, &k, sizeof(k), 0, (struct sockaddr *) &server, sizeof(server));
-  }
+  scanf("%d", &k);
+  k = htons(k);
+  sendto(c, &k, sizeof(k), 0, (struct sockaddr *) &server, sizeof(server));
   
+  int n;
+  recvfrom(c, &n, sizeof(n), MSG_WAITALL,  &server, sizeof(server));
+  n = ntohs(n);
+  printf("%d\n", n);
+
   close(c);
 }
