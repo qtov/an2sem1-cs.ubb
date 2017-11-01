@@ -32,5 +32,8 @@ public class StudentValidator implements Validator<Student> {
 
         if (!validateName(st.getGuide()))
             throw new ValidationException("The guide's name is invalid.");
+
+        if (st.getId() < 0)
+            throw new ValidationException("The id is invalid.");
     }
 }

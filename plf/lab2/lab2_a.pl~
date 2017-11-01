@@ -40,7 +40,7 @@ elim([H|T], R):-
     found(T, H, N),
     N = false,
     elim(T, R2),
-    R is [H|T].
+    R = [H|R2].
 
 
 

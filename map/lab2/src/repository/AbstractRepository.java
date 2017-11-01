@@ -1,8 +1,10 @@
 package repository;
 
+import domain.HasID;
+
 import java.util.HashMap;
 
-public class AbstractRepository<E extends HasID<ID>, ID> implements Repository<E, ID> {
+public abstract class AbstractRepository<E extends HasID<ID>, ID> implements Repository<E, ID> {
     private HashMap<ID, E> map = new HashMap<ID, E>();
     private Validator<E> val;
 

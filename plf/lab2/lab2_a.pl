@@ -4,7 +4,7 @@
 % E - elementul de cautat
 % R - rezultat
 found([], _, false).
-found([H|T], E, true):-
+found([H|_], E, true):-
     E =:= H.
     % sau
     % , E = true.
