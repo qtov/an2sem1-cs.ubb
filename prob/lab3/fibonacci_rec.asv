@@ -1,0 +1,7 @@
+function r = fibonacci_rec(n)
+    if (n == 1)
+        r = 1
+    elseif (n == 2)
+        r = 2
+    elseif
+        r = fibonacci_rec(n - 1) + dibona

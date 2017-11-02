@@ -1,0 +1,5 @@
+sa se scrie o pereche de prog emi, recep, comunica udp
+Emit citeste de la tastatura si trimite aceste numere receptorului pana la citirea lui 0
+recep va deservi in acelasi timp 2 clienti si trimite fiecaruia numarul trimis de celalalt recep
+
+tema: facem serv a oricator perechi de emitatori.

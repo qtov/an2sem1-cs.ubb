@@ -10,12 +10,10 @@
 int main() {
   int c;
   struct sockaddr_in server;
-  int i, k;
-  
+  int k;
   
   c = socket(AF_INET, SOCK_DGRAM, 0);
-  if (c < 0)
-  {
+  if (c < 0) {
     printf("Eroare la crearea socketului client\n");
     return 1;
   }
@@ -25,26 +23,18 @@ int main() {
   server.sin_family = AF_INET;
   server.sin_addr.s_addr = inet_addr("127.0.0.1");
   
+  int t;
   scanf("%d", &k);
+  scanf("%d", &t);
   k = htons(k);
+  t = htons(t);
   sendto(c, &k, sizeof(k), 0, (struct sockaddr *) &server, sizeof(server));
+  sendto(c, &t, sizeof(t), 0, (struct sockaddr *) &server, sizeof(server));
   
   int n;
   recvfrom(c, &n, sizeof(n), MSG_WAITALL,  &server, sizeof(server));
-  n = ntohs(n);
-  printf("Lungimea sirului: %d\n", n);
-
-  int *a = (int*)malloc(n * sizeof(int));
-  for (i = 0; i < n; i++)
-  {
-    recvfrom(c, &a[i], sizeof(a[i]), MSG_WAITALL, &server, sizeof(server));
-    a[i] = ntohs(a[i]);
-  }
-
-  for (i = 0; i < n; i++)
-    printf("%d ", a[i]);
-
-  printf("\n");
+  
+  printf("Suma: %d\n", n);
 
   close(c);
 }
