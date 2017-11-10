@@ -1,0 +1,8 @@
+
+        Integer currentWeek = Calendar.getInstance().get(Calendar.WEEK_OF_YEAR) - 39;
+        currentWeek = currentWeek < 39 ? currentWeek + 13 : currentWeek;
+        Calendar cld = Calendar.getInstance();
+        Date date = new Date("1 jan 2018");
+        cld.setTime(date);
+        int dayOfWeek = cld.get(Calendar.WEEK_OF_YEAR) + 13;
+        System.out.println("" + currentWeek + " " + dayOfWeek);

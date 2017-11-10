@@ -42,6 +42,22 @@ public class Student implements HasID<Integer> {
         this.id = _id;
     }
 
+    public void setName(String _name) {
+        this.name = _name;
+    }
+
+    public void setGroup(String _group) {
+        this.group = _group;
+    }
+
+    public void setEmail(String _email) {
+        this.email = _email;
+    }
+
+    public void setGuide(String _guide) {
+        this.guide = _guide;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)
@@ -52,7 +68,7 @@ public class Student implements HasID<Integer> {
 
         Student student = (Student) o;
 
-        if (name != null ? !name.equals(student.name) : student.name != null)
+        if (id == student.getId() || student.name != null)
             return false;
         return true;
     }

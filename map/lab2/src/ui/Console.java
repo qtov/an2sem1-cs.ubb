@@ -1,11 +1,11 @@
 package ui;
 
+import domain.Grade;
 import domain.Project;
 import domain.Student;
 import repository.ValidationException;
 import service.Service;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.Scanner;
@@ -31,6 +31,15 @@ public class Console {
         return salt.toString();
     }
 
+    /**
+     * Reads from standard input with message.
+     *
+     * @param type
+     *   Message to display.
+     *
+     * @return
+     *   Returns the newly read line.
+     */
     private String readInput(String type) {
         Scanner sc = new Scanner(System.in);
 
@@ -50,6 +59,9 @@ public class Console {
         }
     }
 
+    /**
+     * Reads input and send it to the Service.
+     */
     private void save() {
         String id = readInput("id");
         String name = readInput("name");
@@ -74,6 +86,9 @@ public class Console {
         System.out.println(s.update(id, name, group, email, guide));
     }
 
+    /**
+     * Reads from input and prints whether the update was successful or not.
+     */
     private void update() {
         String id = readInput("id");
         String name = readInput("name");
@@ -91,6 +106,10 @@ public class Console {
         System.out.println(s.delete(id));
     }
 
+    /**
+     * Reads id from input and sends to Service.
+     * Outputs message regarding the deletion.
+     */
     private void delete() {
         String id = readInput("id");
         Student st = s.delete(id);
@@ -100,6 +119,10 @@ public class Console {
             System.out.println("Id not found.");
     }
 
+    /**
+     * Reads id, desc, deadline and sends to Service.
+     * Displays message informing user.
+     */
     private void addProject() {
         String id = readInput("project number");
         String desc = readInput("description");
@@ -108,7 +131,7 @@ public class Console {
         try {
             this.s.addProject(id, desc, deadline);
         } catch (ValidationException e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
         }
     }
 
@@ -123,6 +146,9 @@ public class Console {
         }
     }
 
+    /**
+     * Reads id of Project and sends to Service for processing.
+     */
     private void extendDeadline() {
         String id = readInput("project number");
 
@@ -142,6 +168,26 @@ public class Console {
             System.out.println(pr);
     }
 
+    private void displayGrades() {
+        for (Grade gr : this.s.findAllGrade())
+            System.out.println(gr);
+    }
+
+    private void addGrade() {
+        String idSt = readInput("id student");
+        String prSt = readInput("id project");
+        String value = readInput("value");
+
+        try {
+            this.s.addGrade(idSt, prSt, value);
+        } catch (ValidationException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /**
+     * Maps the methods to values.
+     */
     private void constructMenu() {
         this.opt.put("1", this::save);
         this.opt.put("2", this::delete);
@@ -150,6 +196,8 @@ public class Console {
         this.opt.put("5", this::extendDeadline);
         this.opt.put("6", this::displayStudents);
         this.opt.put("7", this::displayProjects);
+        this.opt.put("8", this::addGrade);
+        this.opt.put("9", this::displayGrades);
     }
 
     private void showMenu() {
@@ -161,6 +209,8 @@ public class Console {
         System.out.println("5. Extend deadline.");
         System.out.println("6. Show Students.");
         System.out.println("7. Show Projects.");
+        System.out.println("8. Add grade.");
+        System.out.println("9. Show Grades.");
     }
 
     private void runTest() {
@@ -186,6 +236,9 @@ public class Console {
         displayProjects();
     }
 
+    /**
+     * Main console method.
+     */
     public void run() {
         this.runTest();
 

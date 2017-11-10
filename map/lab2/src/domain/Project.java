@@ -25,8 +25,16 @@ public class Project implements HasID<Integer> {
         return this.desc;
     }
 
+    public void setDesc(String _desc) {
+        this.desc = _desc;
+    }
+
     public int getWeek() {
         return this.week;
+    }
+
+    public void setWeek(int _week) {
+        this.week = _week;
     }
 
     public void incWeek() {
