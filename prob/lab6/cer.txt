@@ -1,0 +1,5 @@
+2 zar, afl prob urm elem
+
+a) suma nr, nr prim
+b) suma para
+C) suma cel mult == 10
