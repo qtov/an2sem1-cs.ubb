@@ -1,2 +1,18 @@
-greater(A, B, R):-
-    A > B.
+subsir([], []).
+subsir([H|T], R):-
+    subsir(T, R1),
+    R = [H|R1].
+subsir([H|T], R):-
+    subsir2(T, R1),
+    R = [H|R1].
+
+subsir2(_, []).
+subsir2([H|T], [H|R1]):-
+    subsir2(T, R1).
+
+
+
+
+
+
+

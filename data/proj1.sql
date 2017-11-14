@@ -8,6 +8,9 @@ select * from groups;
 select * from topics;
 select * from users_groups;
 
+select * from users
+where id between 1,5;
+
 delete from users_groups;
 delete from comments
 dbcc checkident('comments', reseed, 0);
@@ -79,8 +82,7 @@ values (
 insert into friends(id_user1, id_user2, timestamp)
 values (
 	2,
-	5,
-	-- 'a5',
+	'a5',
 	GETDATE()
 );
 
@@ -222,15 +224,38 @@ select *, 3*3
 from users
 where register_date < ALL(select creation_date from comments);
 
+select *
+from users u, comments c
+where register_date < min(c.creation_date);
+
 select *, 2+2 from topics t
 where t.creation_date > ANY(select c.creation_date from comments c);
 
 select *
+from topics t, comments c
+where t.creation_date > min(c.creation_date)
+
+select *
 from users
-where register_date <= ALL(select creation_date from comments);
+where register_date >= ALL(select creation_date from comments);
+
+select *
+from users u, comments c
+where u.register_date >= max(c.creation_date);
 
 select * from topics t
-where t.creation_date >= ANY(select c.creation_date from comments c);
+where t.creation_date <= ANY(select c.creation_date from comments c);
+
+select *
+from topics t, comments c
+where t.creation_date <= min(c.creation_date);
+
+select * from topics t
+where t.creation_date = ANY(select c.creation_date from comments c);
+
+select *
+from topics t, comments c
+where t.creation_date = c.creation_date;
 
 select *
 from comments c
