@@ -5,7 +5,7 @@ import domain.HasID;
 import java.util.HashMap;
 
 public abstract class AbstractRepository<E extends HasID<ID>, ID> implements Repository<E, ID> {
-    private HashMap<ID, E> map = new HashMap<ID, E>();
+    protected HashMap<ID, E> map = new HashMap<ID, E>();
     private Validator<E> val;
 
     AbstractRepository(Validator<E> _val) {

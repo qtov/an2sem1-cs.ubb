@@ -6,8 +6,4 @@ public class ProjectRepositoryInMemory extends AbstractRepository<Project, Integ
     public ProjectRepositoryInMemory(ProjectValidator _val) {
         super(_val);
     }
-
-//    public boolean extendDeadline(Integer id) {
-//        return true;
-//    }
 }

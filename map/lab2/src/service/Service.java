@@ -171,13 +171,60 @@ public class Service {
         return this.stRepo.findAll();
     }
 
-    public void addGrade(String _stId, String _prId, String _value) throws ValidationException {
+    public void addGrade(String _stId, String _prId, String _value, String _inWeek, String _obs) throws ValidationException {
         int stId = intConverter(_stId);
         int prId = intConverter(_prId);
         float value = floatConverter(_value);
+        int inWeek = intConverter(_inWeek);
 
-        Grade grade = new Grade(stId, prId, value);
+        if (prRepo.findOne(prId) == null) {
+            prId = -1;
+        }
+
+        if (stRepo.findOne(stId) == null) {
+            stId = -1;
+        }
+
+        Project pr = prRepo.findOne(prId);
+
+        if (inWeek > pr.getWeek() + 2)
+            value = 1;
+        else if (inWeek > pr.getWeek())
+            value = value - 2 * (inWeek - pr.getWeek());
+
+        Grade grade = new Grade(stId, prId, value, inWeek, pr.getWeek(), _obs);
+
         this.grRepo.save(grade);
-        Grade.incId();
+    }
+
+    public void updateGrade(String _stId, String _prId, String _value, String _inWeek, String _obs) {
+        int stId = intConverter(_stId);
+        int prId = intConverter(_prId);
+        float value = floatConverter(_value);
+        int inWeek = intConverter(_inWeek);
+
+        Grade old = null;
+
+        for (Grade gr : grRepo.findAll()) {
+            if (stId == gr.getStId() && prId == gr.getStId()) {
+                old = gr;
+                break;
+            }
+        }
+        if (old == null)
+            return;
+
+        if (inWeek > old.getDeadline() + 2)
+            value = 1;
+        else if (inWeek > old.getDeadline())
+            value = value - 2 * (inWeek - old.getDeadline());
+
+        Grade grade = new Grade(stId, prId, value, inWeek, old.getDeadline(), _obs);
+        this.grRepo.update(grade);
+    }
+
+    public Project deleteProject(String _id) {
+        Integer id = intConverter(_id);
+        return this.prRepo.delete(id);
     }
 }

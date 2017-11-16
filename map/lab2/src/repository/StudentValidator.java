@@ -2,6 +2,8 @@ package repository;
 
 import domain.Student;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -50,16 +52,21 @@ public class StudentValidator implements Validator<Student> {
      */
     @Override
     public void validate(Student st) throws ValidationException {
+        List<String> error_msg = new ArrayList<>();
+
         if (!validateEmail(st.getEmail()))
-            throw new ValidationException("The email is invalid.");
+            error_msg.add("The email is invalid.");
 
         if (!validateName(st.getName()))
-            throw new ValidationException("The name is invalid.");
+            error_msg.add("The name is invalid.");
 
         if (!validateName(st.getGuide()))
-            throw new ValidationException("The guide's name is invalid.");
+            error_msg.add("The guide's name is invalid.");
 
         if (st.getId() < 0)
-            throw new ValidationException("The id is invalid.");
+            error_msg.add("The id is invalid.");
+
+        if (!error_msg.isEmpty())
+            throw new ValidationException(String.join("\n", error_msg));
     }
 }

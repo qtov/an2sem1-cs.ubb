@@ -1,29 +1,38 @@
 package domain;
 
 public class Grade implements HasID<Integer> {
-    private static Integer id = 1;
+    private Integer id;
+    private static Integer idCount = 1;
     private Integer stId;
     private Integer prId;
     private float value;
+    private Integer inWeek;
+    private Integer deadline;
+    private String obs;
 
-    public Grade(Integer _stId, Integer _prId, float _value) {
+    public Grade(Integer _stId, Integer _prId, float _value, Integer _inWeek, Integer _deadline, String _obs) {
+        this.id = Grade.idCount;
+        Grade.incId();
         this.stId = _stId;
         this.prId = _prId;
         this.value = _value;
+        this.inWeek = _inWeek;
+        this.deadline = _deadline;
+        this.obs = _obs;
     }
 
     @Override
     public void setId(Integer _id) {
-        Grade.id = _id;
+        this.id = _id;
     }
 
     @Override
     public Integer getId() {
-        return Grade.id;
+        return this.id;
     }
 
     public static void incId() {
-        ++Grade.id;
+        ++Grade.idCount;
     }
 
     public void setStId(Integer _id) {
@@ -46,8 +55,32 @@ public class Grade implements HasID<Integer> {
         return this.value;
     }
 
+    public Integer getInWeek() {
+        return inWeek;
+    }
+
+    public void setInWeek(Integer inWeek) {
+        this.inWeek = inWeek;
+    }
+
     public void setValue(float _value) {
         this.value = _value;
+    }
+
+    public void setDeadline(Integer deadline) {
+        this.deadline = deadline;
+    }
+
+    public Integer getDeadline() {
+        return deadline;
+    }
+
+    public void setObs(String obs) {
+        this.obs = obs;
+    }
+
+    public String getObs() {
+        return obs;
     }
 
     @Override
@@ -65,6 +98,6 @@ public class Grade implements HasID<Integer> {
 
     @Override
     public String toString() {
-        return this.getStId() + "; " + this.getPrId() + "; " + this.getValue();
+        return stId + "; " + prId + "; " + value + "; " + deadline + "; " + inWeek + "; " + obs;
     }
 }

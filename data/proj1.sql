@@ -9,7 +9,7 @@ select * from topics;
 select * from users_groups;
 
 select * from users
-where id between 1,5;
+where id between 1 and 5;
 
 delete from users_groups;
 delete from comments
