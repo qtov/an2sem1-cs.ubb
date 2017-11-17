@@ -2,18 +2,13 @@ package repository;
 
 import domain.Grade;
 
-public class GradeRepositoryInMemory extends AbstractRepository<Grade, Integer> {
+public class GradeRepositoryInMemory extends AbstractRepository<Grade, String> {
     public GradeRepositoryInMemory(GradeValidator _val) {
         super(_val);
     }
 
     @Override
     public Grade save(Grade g) throws ValidationException {
-        for (Grade gr : this.findAll()) {
-            if (g.getPrId().equals(gr.getPrId()) && g.getStId().equals(gr.getStId())) {
-                throw new ValidationException("The student has a grade for the project.");
-            }
-        }
         return super.save(g);
     }
 

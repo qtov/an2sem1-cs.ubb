@@ -1,8 +1,7 @@
 package domain;
 
-public class Grade implements HasID<Integer> {
-    private Integer id;
-    private static Integer idCount = 1;
+public class Grade implements HasID<String> {
+    private String id;
     private Integer stId;
     private Integer prId;
     private float value;
@@ -11,8 +10,7 @@ public class Grade implements HasID<Integer> {
     private String obs;
 
     public Grade(Integer _stId, Integer _prId, float _value, Integer _inWeek, Integer _deadline, String _obs) {
-        this.id = Grade.idCount;
-        Grade.incId();
+        this.id = "" + _stId + " " + _prId;
         this.stId = _stId;
         this.prId = _prId;
         this.value = _value;
@@ -22,17 +20,13 @@ public class Grade implements HasID<Integer> {
     }
 
     @Override
-    public void setId(Integer _id) {
+    public void setId(String _id) {
         this.id = _id;
     }
 
     @Override
-    public Integer getId() {
+    public String getId() {
         return this.id;
-    }
-
-    public static void incId() {
-        ++Grade.idCount;
     }
 
     public void setStId(Integer _id) {

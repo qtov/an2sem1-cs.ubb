@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
         Repository<Student, Integer> stRepo = new StudentRepositoryFile(new StudentValidator(), "repos/students.txt");
         Repository<Project, Integer> prRepo = new ProjectRepositoryFile(new ProjectValidator(), "repos/projects.txt");
-        Repository<Grade, Integer> grRepo = new GradeRepositoryFile(new GradeValidator(), "grades/");
+        Repository<Grade, String> grRepo = new GradeRepositoryFile(new GradeValidator(), "grades/");
 
         Service s = new Service(stRepo, prRepo, grRepo);
         Console c = new Console(s);

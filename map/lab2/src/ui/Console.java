@@ -194,7 +194,13 @@ public class Console {
         String inWeek = readInput("given week");
         String obs = readInput("observations");
 
-        this.s.updateGrade(idSt, prSt, value, inWeek, obs);
+        Grade g = this.s.updateGrade(idSt, prSt, value, inWeek, obs);
+        if (g == null) {
+            System.out.println("Update successful.");
+        }
+        else {
+            System.err.println("Update unsuccessful.");
+        }
     }
 
     private void deleteProject() {

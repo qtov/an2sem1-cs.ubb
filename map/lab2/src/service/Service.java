@@ -11,9 +11,9 @@ import java.util.Calendar;
 public class Service {
     private Repository<Student, Integer> stRepo;
     private Repository<Project, Integer> prRepo;
-    private Repository<Grade, Integer> grRepo;
+    private Repository<Grade, String> grRepo;
 
-    public Service(Repository<Student, Integer> _stRepo, Repository<Project, Integer> _prRepo, Repository<Grade, Integer> _grRepo) {
+    public Service(Repository<Student, Integer> _stRepo, Repository<Project, Integer> _prRepo, Repository<Grade, String> _grRepo) {
         this.stRepo = _stRepo;
         this.prRepo = _prRepo;
         this.grRepo = _grRepo;
@@ -197,30 +197,21 @@ public class Service {
         this.grRepo.save(grade);
     }
 
-    public void updateGrade(String _stId, String _prId, String _value, String _inWeek, String _obs) {
+    public Grade updateGrade(String _stId, String _prId, String _value, String _inWeek, String _obs) {
         int stId = intConverter(_stId);
         int prId = intConverter(_prId);
         float value = floatConverter(_value);
         int inWeek = intConverter(_inWeek);
 
-        Grade old = null;
+        Project pr = prRepo.findOne(prId);
 
-        for (Grade gr : grRepo.findAll()) {
-            if (stId == gr.getStId() && prId == gr.getStId()) {
-                old = gr;
-                break;
-            }
-        }
-        if (old == null)
-            return;
-
-        if (inWeek > old.getDeadline() + 2)
+        if (inWeek > pr.getWeek() + 2)
             value = 1;
-        else if (inWeek > old.getDeadline())
-            value = value - 2 * (inWeek - old.getDeadline());
+        else if (inWeek > pr.getWeek())
+            value = value - 2 * (inWeek - pr.getWeek());
 
-        Grade grade = new Grade(stId, prId, value, inWeek, old.getDeadline(), _obs);
-        this.grRepo.update(grade);
+        Grade grade = new Grade(stId, prId, value, inWeek, pr.getWeek(), _obs);
+        return this.grRepo.update(grade);
     }
 
     public Project deleteProject(String _id) {
