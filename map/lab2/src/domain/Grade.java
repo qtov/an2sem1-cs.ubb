@@ -92,6 +92,6 @@ public class Grade implements HasID<String> {
 
     @Override
     public String toString() {
-        return stId + "; " + prId + "; " + value + "; " + deadline + "; " + inWeek + "; " + obs;
+        return stId + ";" + prId + ";" + value + ";" + inWeek + ";" + deadline + ";" + obs;
     }
 }

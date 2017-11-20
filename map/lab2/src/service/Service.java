@@ -90,8 +90,8 @@ public class Service {
     public boolean extendDeadline(String _id) {
         Integer id = intConverter(_id);
         Project pr = this.prRepo.findOne(id);
-        Integer currentWeek = Calendar.getInstance().get(Calendar.WEEK_OF_YEAR) - 39;
-        currentWeek = currentWeek < 39 ? currentWeek + 13 : currentWeek;
+        Integer currentWeek = Calendar.getInstance().get(Calendar.WEEK_OF_YEAR);
+        currentWeek = currentWeek < 39 ? currentWeek + 13 : currentWeek - 39;
         if (pr != null)
             if (currentWeek < pr.getWeek() && pr.getWeek() < 14)
             {

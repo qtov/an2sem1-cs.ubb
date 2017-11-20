@@ -80,6 +80,6 @@ public class Student implements HasID<Integer> {
 
     @Override
     public String toString() {
-        return this.getId() + "; " + this.getName() + "; " + this.getEmail() + "; " + this.getGroup() + "; " + this.getGuide();
+        return this.getId() + "; " + this.getName() + "; " + this.getGroup() + "; " + this.getEmail() + "; " + this.getGuide();
     }
 }
