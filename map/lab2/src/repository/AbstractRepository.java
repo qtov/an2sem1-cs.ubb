@@ -2,7 +2,9 @@ package repository;
 
 import domain.HasID;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public abstract class AbstractRepository<E extends HasID<ID>, ID> implements Repository<E, ID> {
     protected HashMap<ID, E> map = new HashMap<ID, E>();
@@ -35,6 +37,11 @@ public abstract class AbstractRepository<E extends HasID<ID>, ID> implements Rep
     @Override
     public E findOne(ID id) {
         return this.map.get(id);
+    }
+
+    @Override
+    public Map<ID, E> getAll() {
+        return this.map;
     }
 
     @Override

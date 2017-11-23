@@ -6,18 +6,20 @@ import filter.FilterAndSorter;
 import repository.Repository;
 import domain.Student;
 import repository.ValidationException;
+import utils.ListEvent;
+import utils.ListEventType;
+import utils.Observable;
+import utils.Observer;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
-public class Service {
+public class Service implements Observable<Student> {
     private Repository<Student, Integer> stRepo;
     private Repository<Project, Integer> prRepo;
     private Repository<Grade, String> grRepo;
+    ArrayList<Observer<Student>> studentObservers = new ArrayList<>();
 
     public Service(Repository<Student, Integer> _stRepo, Repository<Project, Integer> _prRepo, Repository<Grade, String> _grRepo) {
         this.stRepo = _stRepo;
@@ -138,6 +140,33 @@ public class Service {
         this.stRepo.save(st);
     }
 
+    public Student saveObj(Student st) throws ValidationException {
+        Student s = this.stRepo.save(st);
+        if (s == null) {
+            ListEvent<Student> ev = createEvent(ListEventType.ADD, s, stRepo.findAll());
+            notifyObservers(ev);
+        }
+        return s;
+    }
+
+    public Student deleteStudentObj(Student _st) {
+        Student r = stRepo.delete(_st.getId());
+        if (r != null) {
+            ListEvent<Student> ev = createEvent(ListEventType.REMOVE, r, stRepo.findAll());
+            notifyObservers(ev);
+        }
+        return r;
+    }
+
+    public Student updateStudentObj(Student t) throws ValidationException {
+        Student r = stRepo.update(t);
+        if (r == null) {
+            ListEvent<Student> ev = createEvent(ListEventType.UPDATE, r, stRepo.findAll());
+            notifyObservers(ev);
+        }
+        return r;
+    }
+
     /**
      * Deletes a Student from repo.
      *
@@ -175,6 +204,10 @@ public class Service {
 
     public Iterable<Student> findAll() {
         return this.stRepo.findAll();
+    }
+
+    public List<Student> findAllListStudent() {
+        return new ArrayList<Student>(stRepo.getAll().values());
     }
 
     public void addGrade(String _stId, String _prId, String _value, String _inWeek, String _obs) throws ValidationException {
@@ -344,5 +377,33 @@ public class Service {
         FilterAndSorter<Grade> stFilter = new FilterAndSorter<>(lst, grPred, grComp);
 
         return stFilter.doFilter();
+    }
+
+    @Override
+    public void addObserver(utils.Observer<Student> o) {
+        studentObservers.add(o);
+    }
+
+    @Override
+    public void removeObserver(Observer<Student> o) {
+        studentObservers.remove(o);
+    }
+
+    @Override
+    public void notifyObservers(ListEvent<Student> event) {
+        studentObservers.forEach(x->x.notifyEvent(event));
+    }
+
+    private <E> ListEvent<E> createEvent(ListEventType type, final E elem, final Iterable<E> l){
+        return new ListEvent<E>(type) {
+            @Override
+            public Iterable<E> getList() {
+                return l;
+            }
+            @Override
+            public E getElement() {
+                return elem;
+            }
+        };
     }
 }

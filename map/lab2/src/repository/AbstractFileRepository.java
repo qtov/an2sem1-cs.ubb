@@ -44,6 +44,8 @@ public abstract class AbstractFileRepository<E extends HasID<ID>, ID> extends Ab
                             super.save(t);
                         else if (type.matches("(?i)^modificare.*"))
                             super.update(t);
+                        else
+                            super.save(t);
                     } catch (ValidationException e) {
                         e.printStackTrace();
                     }
@@ -55,9 +57,9 @@ public abstract class AbstractFileRepository<E extends HasID<ID>, ID> extends Ab
     }
 
     private void loadDataFileReader() {
-        File param = new File("src/data/" + filename);
+        File param = new File(filename);
         if (param.isFile()) {
-            loadFile("src/data/" + filename, false);
+            loadFile(filename, false);
         }
         else if (param.isDirectory()) {
             File[] listOfFiles = param.listFiles();
@@ -92,7 +94,7 @@ public abstract class AbstractFileRepository<E extends HasID<ID>, ID> extends Ab
             saveToFile(entity);
         }
 
-        return entity;
+        return e;
     }
 
     private void rewriteFile() {
