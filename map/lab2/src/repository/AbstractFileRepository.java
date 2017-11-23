@@ -57,13 +57,11 @@ public abstract class AbstractFileRepository<E extends HasID<ID>, ID> extends Ab
     private void loadDataFileReader() {
         File param = new File("src/data/" + filename);
         if (param.isFile()) {
-//            System.out.println("src/data/" + filename);
             loadFile("src/data/" + filename, false);
         }
         else if (param.isDirectory()) {
             File[] listOfFiles = param.listFiles();
             for (File file : listOfFiles) {
-//                System.out.println(file.toString());
                 loadFile(file.toString(), true);
             }
         }
