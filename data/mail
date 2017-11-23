@@ -1,0 +1,13 @@
+mail from: real mail
+rcpt to: to who
+
+From: Name<fake email>
+Subject: blah blah blah
+
+data
+
+more data
+
+.
+
+telnet localhost 25

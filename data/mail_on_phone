@@ -1,0 +1,15 @@
+incoming mail server
+pop3, imap, imaps
+993
+
+
+out going mail server
+smtp, smtps
+465
+
+
+www.scs.ubbcluj.ro
+ssl/tls
+
+fpir2103
+parola
