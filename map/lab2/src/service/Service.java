@@ -2,11 +2,17 @@ package service;
 
 import domain.Grade;
 import domain.Project;
+import filter.FilterAndSorter;
 import repository.Repository;
 import domain.Student;
 import repository.ValidationException;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Comparator;
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.regex.Pattern;
 
 public class Service {
     private Repository<Student, Integer> stRepo;
@@ -28,7 +34,7 @@ public class Service {
      * @return
      *   Returns the newly converted String as Integer.
      */
-    private Integer intConverter(String x) {
+    public Integer intConverter(String x) {
         int newX;
         try {
             newX = Integer.parseInt(x);
@@ -217,5 +223,126 @@ public class Service {
     public Project deleteProject(String _id) {
         Integer id = intConverter(_id);
         return this.prRepo.delete(id);
+    }
+
+    public List<Student> filterStudentsYear1() {
+        List<Student> lst = new ArrayList<>();
+        for (Student st : stRepo.findAll()) {
+            lst.add(st);
+        }
+
+        Comparator<Student> stComp = Comparator.comparing(Student::getId);
+        Predicate<Student> stPred = x -> x.getGroup().charAt(0) == '1' && x.getGroup().length() == 3;
+        FilterAndSorter<Student> stFilter = new FilterAndSorter<>(lst, stPred, stComp);
+
+        return stFilter.doFilter();
+    }
+
+    public List<Student> filterStudentsName(String name) {
+        List<Student> lst = new ArrayList<>();
+        for (Student st : stRepo.findAll()) {
+            lst.add(st);
+        }
+
+        Comparator<Student> stComp = Comparator.comparing(Student::getName);
+        Predicate<Student> stPred = x -> Pattern.matches("(?i).*" + name + ".*", x.getName());
+        FilterAndSorter<Student> stFilter = new FilterAndSorter<>(lst, stPred, stComp);
+
+        return stFilter.doFilter();
+    }
+
+    public List<Student> filterStudentsGuide(String name) {
+        List<Student> lst = new ArrayList<>();
+        for (Student st : stRepo.findAll()) {
+            lst.add(st);
+        }
+
+        Comparator<Student> stComp = Comparator.comparing(Student::getName);
+        Predicate<Student> stPred = x -> Pattern.matches("(?i).*" + name + ".*", x.getGuide());
+        FilterAndSorter<Student> stFilter = new FilterAndSorter<>(lst, stPred, stComp);
+
+        return stFilter.doFilter();
+    }
+
+    public List<Project> filterProjectsDescA() {
+        List<Project> lst = new ArrayList<>();
+        for (Project pr : prRepo.findAll()) {
+            lst.add(pr);
+        }
+
+        Comparator<Project> prComp = (x, y) -> x.getId() - y.getId();
+        Predicate<Project> prPred = x -> Pattern.matches("(?i)a.*", x.getDesc());
+        FilterAndSorter<Project> stFilter = new FilterAndSorter<>(lst, prPred, prComp);
+
+        return stFilter.doFilter();
+    }
+
+    public List<Project> filterProjectsLowerThanWeek(int week) {
+        List<Project> lst = new ArrayList<>();
+        for (Project pr : prRepo.findAll()) {
+            lst.add(pr);
+        }
+
+        Comparator<Project> prComp = (x, y) -> x.getId() - y.getId();
+        Predicate<Project> prPred = x -> x.getWeek() < week;
+        FilterAndSorter<Project> stFilter = new FilterAndSorter<>(lst, prPred, prComp);
+
+        return stFilter.doFilter();
+    }
+
+    public List<Project> filterProjectsNew() {
+        List<Project> lst = new ArrayList<>();
+        for (Project pr : prRepo.findAll()) {
+            lst.add(pr);
+        }
+
+        Integer currentWeek = Calendar.getInstance().get(Calendar.WEEK_OF_YEAR);
+        currentWeek = currentWeek < 39 ? currentWeek + 13 : currentWeek - 39;
+        final int curWeek = currentWeek;
+
+        Comparator<Project> prComp = (x, y) -> x.getId() - y.getId();
+        Predicate<Project> prPred = x -> x.getWeek() > curWeek;
+        FilterAndSorter<Project> stFilter = new FilterAndSorter<>(lst, prPred, prComp);
+
+        return stFilter.doFilter();
+    }
+
+    public List<Grade> filterGrades1() {
+        List<Grade> lst = new ArrayList<>();
+        for (Grade gr : grRepo.findAll()) {
+            lst.add(gr);
+        }
+
+        Comparator<Grade> grComp = (x, y) -> x.getId().compareTo(y.getId());
+        Predicate<Grade> grPred = x -> x.getValue() == 1;
+        FilterAndSorter<Grade> stFilter = new FilterAndSorter<>(lst, grPred, grComp);
+
+        return stFilter.doFilter();
+    }
+
+    public List<Grade> filterGradesStudent(int id) {
+        List<Grade> lst = new ArrayList<>();
+        for (Grade gr : grRepo.findAll()) {
+            lst.add(gr);
+        }
+
+        Comparator<Grade> grComp = (x, y) -> x.getStId() - y.getStId();
+        Predicate<Grade> grPred = x -> x.getStId() == id;
+        FilterAndSorter<Grade> stFilter = new FilterAndSorter<>(lst, grPred, grComp);
+
+        return stFilter.doFilter();
+    }
+
+    public List<Grade> filterGradesOver5() {
+        List<Grade> lst = new ArrayList<>();
+        for (Grade gr : grRepo.findAll()) {
+            lst.add(gr);
+        }
+
+        Comparator<Grade> grComp = (x, y) -> x.getStId() - y.getStId();
+        Predicate<Grade> grPred = x -> x.getValue() >= 5;
+        FilterAndSorter<Grade> stFilter = new FilterAndSorter<>(lst, grPred, grComp);
+
+        return stFilter.doFilter();
     }
 }

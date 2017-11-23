@@ -6,9 +6,7 @@ import domain.Student;
 import repository.ValidationException;
 import service.Service;
 
-import java.util.HashMap;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Console {
@@ -214,6 +212,78 @@ public class Console {
 
     }
 
+    private void filterStudents() {
+        System.out.println("1. Name");
+        System.out.println("2. Guide");
+        System.out.println("3. First Year");
+
+        String op = readInput("Choice");
+        List<Student> lst = null;
+        if (op.equals("1")) {
+            lst = s.filterStudentsName(readInput("name"));
+        }
+        else if (op.equals("2")) {
+            lst = s.filterStudentsGuide(readInput("guide"));
+        }
+        else if (op.equals("3")) {
+            lst = s.filterStudentsYear1();
+        }
+
+        if (lst != null) {
+            for (Student s : lst) {
+                System.out.println(s.toString());
+            }
+        }
+    }
+
+    private void filterProjects() {
+        System.out.println("1. Projects that start description with 'a'");
+        System.out.println("2. Lower than given week");
+        System.out.println("3. New projects");
+
+        String op = readInput("Choice");
+        List<Project> lst = null;
+        if (op.equals("1")) {
+            lst = s.filterProjectsDescA();
+        }
+        else if (op.equals("2")) {
+            lst = s.filterProjectsLowerThanWeek(s.intConverter(readInput("week")));
+        }
+        else if (op.equals("3")) {
+            lst = s.filterProjectsNew();
+        }
+
+        if (lst != null) {
+            for (Project p : lst) {
+                System.out.println(p.toString());
+            }
+        }
+    }
+
+    private void filterGrades() {
+        System.out.println("1. Value 1");
+        System.out.println("2. Student");
+        System.out.println("3. value > 5");
+
+        String op = readInput("Choice");
+        List<Grade> lst = null;
+        if (op.equals("1")) {
+            lst = s.filterGrades1();
+        }
+        else if (op.equals("2")) {
+            lst = s.filterGradesStudent(s.intConverter(readInput("id")));
+        }
+        else if (op.equals("3")) {
+            lst = s.filterGradesOver5();
+        }
+
+        if (lst != null) {
+            for (Grade g : lst) {
+                System.out.println(g.toString());
+            }
+        }
+    }
+
     /**
      * Maps the methods to values.
      */
@@ -229,6 +299,9 @@ public class Console {
         this.opt.put("9", this::displayStudents);
         this.opt.put("10", this::displayProjects);
         this.opt.put("11", this::displayGrades);
+        this.opt.put("12", this::filterStudents);
+        this.opt.put("13", this::filterProjects);
+        this.opt.put("14", this::filterGrades);
     }
 
     private void showMenu() {
@@ -244,6 +317,9 @@ public class Console {
         System.out.println("9. Show Students.");
         System.out.println("10. Show Projects.");
         System.out.println("11. Show Grades.");
+        System.out.println("12. Filter Student.");
+        System.out.println("13. Filter Project.");
+        System.out.println("14. Filter Grades.");
     }
 
     private void runTest() {
