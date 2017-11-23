@@ -7,50 +7,11 @@ import java.io.*;
 public class GradeFileRepository extends AbstractFileRepository<Grade, String> {
     public GradeFileRepository(GradeValidator _val, String _filename) {
         super(_val, _filename);
-        loadDataFileReader();
     }
 
-    private void loadDataFileReader() {
-        File folder = new File(filename);
-        File[] listOfFiles = folder.listFiles();
-        if (listOfFiles == null) {
-            return;
-        }
-        for (int i = 0; i < listOfFiles.length; i++) {
-
-            if (listOfFiles[i].isFile()) {
-                try (BufferedReader rd = new BufferedReader(new FileReader(filename + listOfFiles[i].getName()))) {
-
-                    String line;
-
-                    while ((line = rd.readLine()) != null) {
-
-                        String[] fields = line.split(";");
-
-                        Integer idSt = Integer.parseInt(listOfFiles[i].getName().replaceFirst("\\.txt$", ""));
-                        Integer idPr = Integer.parseInt(fields[1]);
-                        Float value = Float.parseFloat(fields[2]);
-                        Integer deadline = Integer.parseInt(fields[3]);
-                        Integer inWeek = Integer.parseInt(fields[4]);
-                        Grade g = new Grade(idSt, idPr, value, deadline, inWeek, fields[5]);
-
-                        if (fields[0].matches("(?i)^adaugare.*")) {
-                            try {
-                                saveInMem(g);
-                            } catch (ValidationException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                        if (fields[0].matches("(?i)^modificare.*")) {
-                            updateInMem(g);
-                        }
-                    }
-                }
-                catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+    @Override
+    Grade buildEntity(String[] fields) {
+        return new Grade(Integer.parseInt(fields[0].replaceFirst("\\.txt$", "")), Integer.parseInt(fields[1]), Float.parseFloat(fields[2]), Integer.parseInt(fields[3]), Integer.parseInt(fields[4]), fields[5]);
     }
 
     private void saveToFile(Grade e, String st) {

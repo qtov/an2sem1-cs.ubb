@@ -3,8 +3,16 @@ package repository;
 import domain.HasID;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Stream;
 
 public abstract class AbstractFileRepository<E extends HasID<ID>, ID> extends AbstractRepository<E, ID> implements Repository<E, ID> {
     protected String filename;
@@ -12,10 +20,53 @@ public abstract class AbstractFileRepository<E extends HasID<ID>, ID> extends Ab
     AbstractFileRepository(Validator<E> _val, String _filename) {
         super(_val);
         this.filename = _filename;
+        loadDataFileReader();
+    }
+
+    abstract E buildEntity(String[] fields);
+
+    private void loadFile(String fullPath, boolean addFilename) {
+        Path path = Paths.get(fullPath);
+        Stream<String> lines;
+        try {
+            lines = Files.lines(path);
+            lines.forEach(line -> {
+                if (line.compareTo("") != 0) {
+                    String[] fields = line.split("; ");
+                    String type = fields[0];
+                    if (addFilename)
+                    {
+                        fields[0] = fullPath.replaceAll(".*\\\\", "");
+                    }
+                    E t = buildEntity(fields);
+                    try {
+                        if (type.matches("(?i)^adaugare.*"))
+                            super.save(t);
+                        else if (type.matches("(?i)^modificare.*"))
+                            super.update(t);
+                    } catch (ValidationException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void loadDataFileReader() {
-
+        File param = new File("src/data/" + filename);
+        if (param.isFile()) {
+//            System.out.println("src/data/" + filename);
+            loadFile("src/data/" + filename, false);
+        }
+        else if (param.isDirectory()) {
+            File[] listOfFiles = param.listFiles();
+            for (File file : listOfFiles) {
+//                System.out.println(file.toString());
+                loadFile(file.toString(), true);
+            }
+        }
     }
 
     private void saveToFile(E e) {
