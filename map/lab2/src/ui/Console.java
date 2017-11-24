@@ -158,17 +158,19 @@ public class Console {
 
     private void displayStudents() {
         for (Student st : this.s.findAll())
-            System.out.println(st);
+            System.out.println(st.toStringNice());
     }
 
     private void displayProjects() {
         for (Project pr : this.s.findAllProject())
-            System.out.println(pr);
+            System.out.println(pr.toStringNice());
     }
 
     private void displayGrades() {
-        for (Grade gr : this.s.findAllGrade())
-            System.out.println(gr);
+        for (Grade gr : this.s.findAllGrade()) {
+            System.out.println("Name: " + s.findOneStudent(gr.getStId()).getName());
+            System.out.println(gr.toStringNice());
+        }
     }
 
     private void addGrade() {
@@ -231,7 +233,7 @@ public class Console {
 
         if (lst != null) {
             for (Student s : lst) {
-                System.out.println(s.toString());
+                System.out.println(s.toStringNice());
             }
         }
     }
@@ -255,7 +257,7 @@ public class Console {
 
         if (lst != null) {
             for (Project p : lst) {
-                System.out.println(p.toString());
+                System.out.println(p.toStringNice());
             }
         }
     }
@@ -279,7 +281,8 @@ public class Console {
 
         if (lst != null) {
             for (Grade g : lst) {
-                System.out.println(g.toString());
+                System.out.println("Name: " + s.findOneStudent(g.getStId()).getName());
+                System.out.println(g.toStringNice());
             }
         }
     }

@@ -1,5 +1,9 @@
-4; pot potq; 224; pot@pot.com; pot pot
+1; first student; 213; somethin@somthein.com; first guide
+3; third student; 223; something@somthing.com; third guide
 20; test test; 215; test@test.com; test test
+4; patru qwe; 231; weioqjwo@iojoi.ro; oeqewpo qewqw
+21; test test; 223; test@testing.test; test qwert
 7; poi poi; 23; poi@poi.poi; poi poi
+23; test testing; 223; test@testing.com; test testing
 9; poi poi; 223; poi@poi.opi; poi poi
-10; oiu oiu; 223; oiu@oiu.com; oiu oiu
+10; oiu oiurrr; 223; oiu@oiu.com; oiu oiu

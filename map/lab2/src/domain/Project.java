@@ -45,4 +45,10 @@ public class Project implements HasID<Integer> {
     public String toString() {
         return this.getId() + "; " + this.getDesc() + "; " + this.getWeek();
     }
+
+    public String toStringNice() {
+        return "Id: " + id + "\n" +
+                "Description: " + desc + "\n" +
+                "Deadline: " + week + "\n";
+    }
 }

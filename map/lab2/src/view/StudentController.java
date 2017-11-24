@@ -1,25 +1,15 @@
 package view;
 
 import domain.Student;
-import javafx.collections.ObservableMap;
 import repository.ValidationException;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import service.Service;
-import service.Service;
-//import sun.plugin2.message.Message;
-//import sun.security.validator.ValidatorException;
 import utils.ListEvent;
 import utils.Observer;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -49,7 +39,7 @@ public class StudentController implements Observer<Student> {
     @Override
     public void notifyEvent(ListEvent<Student> e) {
         model.setAll(StreamSupport.stream(e.getList().spliterator(),false)
-                .collect(Collectors.toList()));  // important
+                .collect(Collectors.toList()));
     }
 
     public StudentView getView() {
@@ -64,8 +54,7 @@ public class StudentController implements Observer<Student> {
         return model;
     }
 
-    public void handleAddMessage(ActionEvent actionEvent)
-    {
+    public void handleAddMessage(ActionEvent actionEvent) {
         Student toAdd = extractMessage();
         try
         {
@@ -121,10 +110,7 @@ public class StudentController implements Observer<Student> {
         }
     }
 
-
-    //other methods
-    private Student extractMessage()
-    {
+    private Student extractMessage() {
         String id = view.txtfieldID.getText();
         String name = view.txtfieldName.getText();
         String group = view.txtfieldGroup.getText();
@@ -132,33 +118,31 @@ public class StudentController implements Observer<Student> {
         String guide = view.txtfieldGuide.getText();
         return new Student(intConverter(id), name, group , email , guide);
     }
-    static void showMessage(Alert.AlertType type, String header, String text){
+
+    static void showMessage(Alert.AlertType type, String header, String text) {
         Alert message = new Alert(type);
         message.setHeaderText(header);
         message.setContentText(text);
         message.showAndWait();
     }
 
-    static void showErrorMessage(String text){
+    static void showErrorMessage(String text) {
         Alert message = new Alert(Alert.AlertType.ERROR);
-        message.setTitle("Mesaj eroare");
+        message.setTitle("Eroare");
         message.setContentText(text);
         message.showAndWait();
     }
 
 
-    public void showStudentDetails(Student newValue)
-    {
-        if (newValue != null)
-        {
+    public void showStudentDetails(Student newValue) {
+        if (newValue != null) {
             view.txtfieldGuide.setText(newValue.getGuide());
             view.txtfieldName.setText(newValue.getName());
             view.txtfieldGroup.setText(newValue.getGroup());
             view.txtfieldEmail.setText(newValue.getEmail());
             view.txtfieldID.setText("" + newValue.getId());
         }
-        else
-        {
+        else {
             view.txtfieldName.setText("");
             view.txtfieldGroup.setText("");
             view.txtfieldGuide.setText("");

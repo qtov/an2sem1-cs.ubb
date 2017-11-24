@@ -21,7 +21,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Student");
         primaryStage.setScene(new Scene(initView(), 750, 600));
         primaryStage.show();
     }
@@ -35,7 +35,7 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-//        c.run();
-        launch(args);
+        c.run();
+//        launch(args);
     }
 }

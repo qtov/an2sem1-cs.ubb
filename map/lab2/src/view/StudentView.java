@@ -5,8 +5,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -29,25 +27,20 @@ public class StudentView {
 
     TableView<Student> tableView = new TableView<>();
 
-
     private void initView() {
 
         borderPane = new BorderPane();
-        //top AnchorPane
         borderPane.setTop(initTop());
-//        //left
         borderPane.setLeft(initLeft());
-//        //center
         borderPane.setCenter(initCenter());
 
     }
 
 
-    private AnchorPane initTop()
-    {
-        AnchorPane topAnchorPane=new AnchorPane();
+    private AnchorPane initTop() {
+        AnchorPane topAnchorPane = new AnchorPane();
 
-        Label titleLabel = new Label("Student Operations...");
+        Label titleLabel = new Label("Student CRUD");
         topAnchorPane.getChildren().add(titleLabel);
         AnchorPane.setTopAnchor(titleLabel,20d);
         AnchorPane.setLeftAnchor(titleLabel,100d);
@@ -58,7 +51,7 @@ public class StudentView {
 
     public AnchorPane initLeft(){
         AnchorPane leftAnchorPane = new AnchorPane();
-        tableView=createStudentTableView();
+        tableView = createStudentTableView();
         leftAnchorPane.getChildren().add(tableView);
         AnchorPane.setLeftAnchor(tableView,20d);
         AnchorPane.setRightAnchor(tableView,20d);
@@ -67,9 +60,9 @@ public class StudentView {
 
         return  leftAnchorPane;
     }
-    public AnchorPane initCenter()
-    {
-        AnchorPane centerAnchorPane=new AnchorPane();
+
+    public AnchorPane initCenter() {
+        AnchorPane centerAnchorPane = new AnchorPane();
         GridPane gridPane = createGridPane();
         AnchorPane.setRightAnchor(gridPane,20d);
         centerAnchorPane.getChildren().add(gridPane);
@@ -90,14 +83,13 @@ public class StudentView {
         return centerAnchorPane;
     }
 
-    private GridPane createGridPane()
-    {
+    private GridPane createGridPane() {
         GridPane gp = new GridPane();
         Label labelID = createLabel("ID");
-        Label labelName = createLabel("Nume:");
-        Label labelGroup = createLabel("Grupa:");
-        Label labelEmail = createLabel("Email:");
-        Label labelGuide = createLabel("Indrumator:");
+        Label labelName = createLabel("Nume");
+        Label labelGroup = createLabel("Grupa");
+        Label labelEmail = createLabel("Email");
+        Label labelGuide = createLabel("Indrumator");
         gp.add(labelID,0,0);
         gp.add(this.txtfieldID,1,0);
         gp.add(labelName,0,1);
@@ -120,8 +112,7 @@ public class StudentView {
     }
 
 
-    private TableView<Student> createStudentTableView()
-    {
+    private TableView<Student> createStudentTableView() {
         TableColumn<Student,String> colName = new TableColumn<>("Nume");
         TableColumn<Student,String> colGroup = new TableColumn<>("Grupa");
         TableColumn<Student,String> colEmail = new TableColumn<>("Email");
@@ -142,16 +133,15 @@ public class StudentView {
         return tableView;
     }
 
+    public BorderPane getView() {
+        return borderPane;
+    }
 
-    public BorderPane getView(){ return borderPane;}
-
-    //auxiliars methods
-
-    private Label createLabel(String s){
+    private Label createLabel(String s) {
         Label l = new Label(s);
         l.setFont(new Font(15));
-        l.setTextFill(Color.RED);
-        l.setStyle("-fx-font-weight: bold");
+        l.setTextFill(Color.BLACK);
+//        l.setStyle("-fx-font-weight: bold");
         return l;
     }
 

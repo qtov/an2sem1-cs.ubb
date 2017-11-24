@@ -94,4 +94,11 @@ public class Grade implements HasID<String> {
     public String toString() {
         return stId + "; " + prId + "; " + value + "; " + inWeek + "; " + deadline + "; " + obs;
     }
+
+    public String toStringNice() {
+        return "Id project: " + prId + "\n" +
+                "Given in week: " + inWeek + "\n" +
+                "Deadline: " + deadline + "\n" +
+                "Observations: " + obs + "\n";
+    }
 }

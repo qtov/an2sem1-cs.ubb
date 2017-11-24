@@ -206,6 +206,14 @@ public class Service implements Observable<Student> {
         return this.stRepo.findAll();
     }
 
+    public Student findOneStudent(Integer id) {
+        return stRepo.findOne(id);
+    }
+
+    public Project findOneProject(Integer id) {
+        return prRepo.findOne(id);
+    }
+
     public List<Student> findAllListStudent() {
         return new ArrayList<Student>(stRepo.getAll().values());
     }

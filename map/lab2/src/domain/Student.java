@@ -82,4 +82,12 @@ public class Student implements HasID<Integer> {
     public String toString() {
         return this.getId() + "; " + this.getName() + "; " + this.getGroup() + "; " + this.getEmail() + "; " + this.getGuide();
     }
+
+    public String toStringNice() {
+        return "Id: " + id + "\n" +
+                "Name: " + name + "\n" +
+                "Group: " + group + "\n" +
+                "Email: " + email + "\n" +
+                "Guide: " + guide + "\n";
+    }
 }
