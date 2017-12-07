@@ -17,7 +17,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Test");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setScene(new Scene(root, 700, 500));
         primaryStage.show();
     }
 
@@ -62,6 +62,7 @@ public class Main extends Application {
         for (Task e : fil2.doFilter()) {
             System.out.println(e);
         }
-//        launch(args);
+
+        launch(args);
     }
 }
