@@ -1,9 +1,28 @@
-(defun reuniune (l1 l2)
-	(append l1 l2))
-
-(defun reuniune_recurs (l1 l2)
+(defun in (l1 e)
 	(if (null l1)
-		l2
-		(cons (car l1) (reuniune_recurs (cdr l1) l2))))
+		0)
+	(if (= (car l1) e)
+		1
+	)
+	(if (and (not (null l1)) (\= (car l1) e))
+	    (in (cdr l1) e))
+)
 
-(write (reuniune_recurs '(1 2 3 4) '(1 2 5 6 7)))
+(defun in2 (l e)
+	(cond
+		((null l) 0)
+		((= (car l) e) 1)
+		(T (in2 (cdr l) e))
+	)
+)
+
+(defun inter (l1 l2)
+	(if (null l1)
+		nil
+		)
+	(if (= (in l2 (car l1)) 1)
+		(cons (car l1) (inter (cdr l1) l2))
+		(inter (cdr l1) l2)))
+
+
+(write (in '(1 2 3 4) 4))
