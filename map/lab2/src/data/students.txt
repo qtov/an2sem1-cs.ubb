@@ -6,4 +6,3 @@
 7; poi poi; 23; poi@poi.poi; poi poi
 23; test testing; 223; test@testing.com; test testing
 9; poi poi; 223; poi@poi.opi; poi poi
-10; oiu oiurrr; 223; oiu@oiu.com; oiu oiu

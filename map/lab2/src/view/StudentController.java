@@ -90,6 +90,10 @@ public class StudentController implements Observer<Student> {
     }
 
     public void handleClearFields(ActionEvent actionEvent) {
+        clearFields();
+    }
+
+    public void clearFields() {
         view.txtfieldName.setText("");
         view.txtfieldGroup.setText("");
         view.txtfieldGuide.setText("");
@@ -143,11 +147,7 @@ public class StudentController implements Observer<Student> {
             view.txtfieldID.setText("" + newValue.getId());
         }
         else {
-            view.txtfieldName.setText("");
-            view.txtfieldGroup.setText("");
-            view.txtfieldGuide.setText("");
-            view.txtfieldEmail.setText("");
-            view.txtfieldID.setText("");
+            clearFields();
         }
     }
 }
