@@ -21,7 +21,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("Student");
+        primaryStage.setTitle("Laborator 2");
         primaryStage.setScene(new Scene(initView(), 750, 600));
         primaryStage.show();
     }
