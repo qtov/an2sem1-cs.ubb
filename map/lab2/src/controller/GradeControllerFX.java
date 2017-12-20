@@ -1,6 +1,7 @@
 package controller;
 
 import domain.Grade;
+import domain.Student;
 import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -11,6 +12,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.regex.Pattern;
 
 public class GradeControllerFX extends ControllerFX<Grade> {
     @FXML private TextField idStText;
@@ -18,6 +23,7 @@ public class GradeControllerFX extends ControllerFX<Grade> {
     @FXML private TextField valueText;
     @FXML private TextField weekText;
     @FXML private TextArea obsText;
+    @FXML private TextField search;
 
     public GradeControllerFX() {}
 
@@ -71,5 +77,22 @@ public class GradeControllerFX extends ControllerFX<Grade> {
 
     public void checkBoxAction() {
 
+    }
+
+    public void searchAction() {
+        if (!search.getText().equals("")) {
+            List<Predicate<Student>> predSt = new ArrayList<>();
+
+            predSt.add(x -> Pattern.matches("(?i).*" + search.getText() + ".*", x.getName()));
+            List<Student> stLst = s.filterStudents(predSt);
+
+            List<Predicate<Grade>> pred = new ArrayList<>();
+
+            pred.add(x -> Pattern.matches("(?i).*" + stLst.get(0).getId() + ".*", x.getStId().toString()));
+            table.getItems().setAll(s.filterGrades(pred));
+        }
+        else {
+            table.getItems().setAll(lst);
+        }
     }
 }

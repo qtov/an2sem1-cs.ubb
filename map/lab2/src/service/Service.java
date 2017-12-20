@@ -465,6 +465,17 @@ public class Service implements Observable<Student> {
         return null;
     }
 
+    public List<Grade> filterGrades(List<Predicate<Grade>> pred) {
+        List<Grade> lst = new ArrayList<>();
+        for (Grade gr : grRepo.findAll()) {
+            lst.add(gr);
+        }
+
+        Comparator<Grade> grComp = Comparator.comparing(Grade::getId);
+        FilterAndSorter<Grade> grFilter = new FilterAndSorter<>(lst, pred, grComp);
+        return grFilter.doFilter();
+    }
+
     @Override
     public void addObserver(utils.Observer<Student> o) {
         studentObservers.add(o);

@@ -60,5 +60,7 @@
       <CheckBox fx:id="filGroupCB" layoutX="535.0" layoutY="443.0" mnemonicParsing="false" onAction="#checkBoxAction" text="Filter lower value" />
       <CheckBox fx:id="filGuideCB" layoutX="535.0" layoutY="483.0" mnemonicParsing="false" onAction="#checkBoxAction" text="Filter higher value" />
       <TextArea fx:id="obsText" layoutX="616.0" layoutY="203.0" prefHeight="158.0" prefWidth="187.0" />
+      <TextField fx:id="search" layoutX="37.0" layoutY="71.0" onKeyTyped="#searchAction" promptText="Search Student Name" />
+      <Label layoutX="311.0" layoutY="76.0" text="None" />
    </children>
 </AnchorPane>
