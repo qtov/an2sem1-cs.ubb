@@ -85,7 +85,7 @@ public class StudentController implements Observer<Student> {
             }
         }
         catch (ValidationException e) {
-            showErrorMessage("Valdiation exception: " + e.getMessage());
+            showErrorMessage("Validation exception: " + e.getMessage());
         }
     }
 

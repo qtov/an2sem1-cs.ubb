@@ -215,7 +215,11 @@ public class Service implements Observable<Student> {
     }
 
     public List<Student> findAllListStudent() {
-        return new ArrayList<Student>(stRepo.getAll().values());
+        return new ArrayList<>(stRepo.getAll().values());
+    }
+
+    public List<Project> findAllListProject() {
+        return new ArrayList<>(prRepo.getAll().values());
     }
 
     public void addGrade(String _stId, String _prId, String _value, String _inWeek, String _obs) throws ValidationException {
@@ -266,17 +270,18 @@ public class Service implements Observable<Student> {
         return this.prRepo.delete(id);
     }
 
-    public List<Student> filterStudentsYear1() {
+    public List<Student> filterStudentsGroup(String group) {
         List<Student> lst = new ArrayList<>();
         for (Student st : stRepo.findAll()) {
             lst.add(st);
         }
 
         Comparator<Student> stComp = Comparator.comparing(Student::getId);
-        Predicate<Student> stPred = x -> x.getGroup().charAt(0) == '1' && x.getGroup().length() == 3;
-        FilterAndSorter<Student> stFilter = new FilterAndSorter<>(lst, stPred, stComp);
-
-        return stFilter.doFilter();
+        Predicate<Student> stPred = x -> x.getGroup().matches(".*" + group + ".*");
+//        FilterAndSorter<Student> stFilter = new FilterAndSorter<>(lst, stPred, stComp);
+//
+//        return stFilter.doFilter();
+        return null;
     }
 
     public List<Student> filterStudentsName(String name) {
@@ -287,9 +292,10 @@ public class Service implements Observable<Student> {
 
         Comparator<Student> stComp = Comparator.comparing(Student::getName);
         Predicate<Student> stPred = x -> Pattern.matches("(?i).*" + name + ".*", x.getName());
-        FilterAndSorter<Student> stFilter = new FilterAndSorter<>(lst, stPred, stComp);
-
-        return stFilter.doFilter();
+//        FilterAndSorter<Student> stFilter = new FilterAndSorter<>(lst, stPred, stComp);
+//
+//        return stFilter.doFilter();
+        return null;
     }
 
     public List<Student> filterStudentsGuide(String name) {
@@ -300,8 +306,20 @@ public class Service implements Observable<Student> {
 
         Comparator<Student> stComp = Comparator.comparing(Student::getName);
         Predicate<Student> stPred = x -> Pattern.matches("(?i).*" + name + ".*", x.getGuide());
-        FilterAndSorter<Student> stFilter = new FilterAndSorter<>(lst, stPred, stComp);
+//        FilterAndSorter<Student> stFilter = new FilterAndSorter<>(lst, stPred, stComp);
+//
+//        return stFilter.doFilter();
+        return null;
+    }
 
+    public List<Student> filterStudents(List<Predicate<Student>> pred) {
+        List<Student> lst = new ArrayList<>();
+        for (Student st : stRepo.findAll()) {
+            lst.add(st);
+        }
+
+        Comparator<Student> stComp = Comparator.comparing(Student::getId);
+        FilterAndSorter<Student> stFilter = new FilterAndSorter<>(lst, pred, stComp);
         return stFilter.doFilter();
     }
 
@@ -313,9 +331,10 @@ public class Service implements Observable<Student> {
 
         Comparator<Project> prComp = (x, y) -> x.getId() - y.getId();
         Predicate<Project> prPred = x -> Pattern.matches("(?i)a.*", x.getDesc());
-        FilterAndSorter<Project> stFilter = new FilterAndSorter<>(lst, prPred, prComp);
-
-        return stFilter.doFilter();
+//        FilterAndSorter<Project> stFilter = new FilterAndSorter<>(lst, prPred, prComp);
+//
+//        return stFilter.doFilter();
+        return null;
     }
 
     public List<Project> filterProjectsLowerThanWeek(int week) {
@@ -326,9 +345,10 @@ public class Service implements Observable<Student> {
 
         Comparator<Project> prComp = (x, y) -> x.getId() - y.getId();
         Predicate<Project> prPred = x -> x.getWeek() < week;
-        FilterAndSorter<Project> stFilter = new FilterAndSorter<>(lst, prPred, prComp);
-
-        return stFilter.doFilter();
+//        FilterAndSorter<Project> stFilter = new FilterAndSorter<>(lst, prPred, prComp);
+//
+//        return stFilter.doFilter();
+        return null;
     }
 
     public List<Project> filterProjectsNew() {
@@ -343,9 +363,10 @@ public class Service implements Observable<Student> {
 
         Comparator<Project> prComp = (x, y) -> x.getId() - y.getId();
         Predicate<Project> prPred = x -> x.getWeek() > curWeek;
-        FilterAndSorter<Project> stFilter = new FilterAndSorter<>(lst, prPred, prComp);
-
-        return stFilter.doFilter();
+//        FilterAndSorter<Project> stFilter = new FilterAndSorter<>(lst, prPred, prComp);
+//
+//        return stFilter.doFilter();
+        return null;
     }
 
     public List<Grade> filterGrades1() {
@@ -356,9 +377,10 @@ public class Service implements Observable<Student> {
 
         Comparator<Grade> grComp = (x, y) -> x.getId().compareTo(y.getId());
         Predicate<Grade> grPred = x -> x.getValue() == 1;
-        FilterAndSorter<Grade> stFilter = new FilterAndSorter<>(lst, grPred, grComp);
-
-        return stFilter.doFilter();
+//        FilterAndSorter<Grade> stFilter = new FilterAndSorter<>(lst, grPred, grComp);
+//
+//        return stFilter.doFilter();
+        return null;
     }
 
     public List<Grade> filterGradesStudent(int id) {
@@ -369,9 +391,10 @@ public class Service implements Observable<Student> {
 
         Comparator<Grade> grComp = (x, y) -> x.getStId() - y.getStId();
         Predicate<Grade> grPred = x -> x.getStId() == id;
-        FilterAndSorter<Grade> stFilter = new FilterAndSorter<>(lst, grPred, grComp);
-
-        return stFilter.doFilter();
+//        FilterAndSorter<Grade> stFilter = new FilterAndSorter<>(lst, grPred, grComp);
+//
+//        return stFilter.doFilter();
+        return null;
     }
 
     public List<Grade> filterGradesOver5() {
@@ -382,9 +405,10 @@ public class Service implements Observable<Student> {
 
         Comparator<Grade> grComp = (x, y) -> x.getStId() - y.getStId();
         Predicate<Grade> grPred = x -> x.getValue() >= 5;
-        FilterAndSorter<Grade> stFilter = new FilterAndSorter<>(lst, grPred, grComp);
-
-        return stFilter.doFilter();
+//        FilterAndSorter<Grade> stFilter = new FilterAndSorter<>(lst, grPred, grComp);
+//
+//        return stFilter.doFilter();
+        return null;
     }
 
     @Override

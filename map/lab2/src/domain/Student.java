@@ -1,7 +1,10 @@
 package domain;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 public class Student implements HasID<Integer> {
-    private int id;
+    private Integer id;
     private String name;
     private String group;
     private String email;
@@ -35,6 +38,24 @@ public class Student implements HasID<Integer> {
 
     public String getGuide() {
         return this.guide;
+    }
+
+    public SimpleIntegerProperty getPropId() {
+        return new SimpleIntegerProperty(id);
+    }
+
+    public SimpleStringProperty getPropName() {
+        return new SimpleStringProperty(name);
+    }
+
+    public SimpleStringProperty getPropGroup() {
+        return new SimpleStringProperty(group);
+    }
+    public SimpleStringProperty getPropEmail() {
+        return new SimpleStringProperty(email);
+    }
+    public SimpleStringProperty getPropGuide() {
+        return new SimpleStringProperty(guide);
     }
 
     @Override

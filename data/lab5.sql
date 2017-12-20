@@ -47,3 +47,9 @@ end
 select * from tc;
 
 go
+
+select * from ta
+where a2 = 100;
+
+select * from ta
+where coda = 23

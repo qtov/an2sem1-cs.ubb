@@ -98,8 +98,8 @@ for
 open ctest
 	fetch next from ctest into @id_test, @name_test;
 	while @@FETCH_STATUS = 0 begin
-		if @name_test = 'TesteTabele'
-		-- id_test if teste (insert, delete, select)
+		if @name_test = 'insert'
+		-- @name_test TesteTabele
 		begin
 			declare @t_t_cte int
 			declare @t_t_cta int
@@ -122,8 +122,8 @@ open ctest
 			deallocate c_t_t
 			update RulariTeste set SeIncheieLa = SYSDATETIME() where @id_test = CodRulareTest;
 		end
-		else if @name_test = 'TesteViewuri'
-		-- id_test if teste (insert, delete, select)
+		else if @name_test = 'select'
+		-- @name_test TesteViewuri
 		begin
 			declare @t_v_ct int
 			declare @t_v_cv int
@@ -144,12 +144,20 @@ open ctest
 			deallocate c_t_v
 			update RulariTeste set SeIncheieLa = SYSDATETIME() where @id_test = CodRulareTest;
 		end
+		else if @name_test = 'delete'
+		begin
+			insert into RulariTeste (Descriere, IncepeLa, SeIncheieLa) values ('Delete din tabele', SYSDATETIME(), null);
+			delete from topic_follows;
+			delete from topics;
+			delete from users;
+			update RulariTeste set SeIncheieLa = SYSDATETIME() where CodRulareTest = (select TOP(1) CodRulareTest from RulariTeste order by CodRulareTest desc);
+		end
 		fetch next from ctest into @id_test, @name_test
 	end
 close ctest;
 deallocate ctest;
 
---insert into cursor if teste (insert, delete, select)
+--out of cursor otherwise
 insert into RulariTeste (Descriere, IncepeLa, SeIncheieLa) values ('Delete din tabele', SYSDATETIME(), null);
 delete from topic_follows;
 go

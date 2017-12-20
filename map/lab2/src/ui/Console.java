@@ -228,7 +228,7 @@ public class Console {
             lst = s.filterStudentsGuide(readInput("guide"));
         }
         else if (op.equals("3")) {
-            lst = s.filterStudentsYear1();
+            lst = s.filterStudentsGroup("group");
         }
 
         if (lst != null) {
