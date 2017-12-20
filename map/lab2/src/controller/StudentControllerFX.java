@@ -5,12 +5,10 @@ import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import repository.ValidationException;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,8 +18,6 @@ import java.util.regex.Pattern;
 
 
 public class StudentControllerFX extends ControllerFX<Student> {
-    @FXML
-    private TableView<Student> table;
     @FXML
     private TextField idText;
     @FXML
@@ -64,6 +60,7 @@ public class StudentControllerFX extends ControllerFX<Student> {
                 }
             }
         });
+        s.addObserver(this);
     }
 
     public void prRBAction() throws IOException {
@@ -87,5 +84,46 @@ public class StudentControllerFX extends ControllerFX<Student> {
         }
 
         table.getItems().setAll(s.filterStudents(pred));
+    }
+
+    public void addBtnAction() {
+        Student st = new Student(intConverter(idText.getText()), nameText.getText(), groupText.getText(), emailText.getText(), guideText.getText());
+        try {
+            Student resp = this.s.saveObj(st);
+            if (resp != null) {
+                handleError("The id already exists.");
+            }
+        }
+        catch (ValidationException e) {
+            handleError(e.getMessage());
+        }
+    }
+
+    public void editBtnAction() {
+        Student st = new Student(intConverter(idText.getText()), nameText.getText(), groupText.getText(), emailText.getText(), guideText.getText());
+
+        try {
+            Student resp = this.s.updateStudentObj(st);
+            if (resp != null) {
+                handleError("The id was not found.");
+            }
+        }
+        catch (ValidationException e) {
+            handleError(e.getMessage());
+        }
+    }
+
+    public void deleteBtnAction() {
+        Student st = new Student(intConverter(idText.getText()), nameText.getText(), groupText.getText(), emailText.getText(), guideText.getText());
+
+        if (s.deleteStudentObj(st) == null) {
+            handleError("ID not found/invalid.");
+        }
+    }
+
+    public void filUncheck() {
+        filNameCB.setSelected(false);
+        filGroupCB.setSelected(false);
+        filGuideCB.setSelected(false);
     }
 }

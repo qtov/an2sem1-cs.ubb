@@ -6,7 +6,9 @@ import domain.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import repository.*;
 import service.Service;
@@ -25,6 +27,8 @@ public abstract class ControllerFX<E> implements Observer<E> {
     protected RadioButton stRB;
     @FXML
     protected RadioButton grRB;
+    @FXML
+    protected TableView<E> table;
     protected Service s;
     protected Repository<Student, Integer> stRepo;
     protected Repository<Project, Integer> prRepo;
@@ -34,7 +38,7 @@ public abstract class ControllerFX<E> implements Observer<E> {
 
     @Override
     public void notifyEvent(ListEvent<E> e) {
-        model.setAll(StreamSupport.stream(e.getList().spliterator(),false)
+        table.getItems().setAll(StreamSupport.stream(e.getList().spliterator(),false)
                 .collect(Collectors.toList()));
     }
 
@@ -46,7 +50,20 @@ public abstract class ControllerFX<E> implements Observer<E> {
         this.s = new Service(stRepo, prRepo, grRepo);
     }
 
-    public void linkToService(Service s) {
-        this.s = s;
+    public Integer intConverter(String x) {
+        int newX;
+        try {
+            newX = Integer.parseInt(x);
+        } catch (NumberFormatException e) {
+            newX = -1;
+        }
+        return newX;
+    }
+
+    protected void handleError(String text) {
+        Alert message = new Alert(Alert.AlertType.ERROR);
+        message.setTitle("Eroare");
+        message.setContentText(text);
+        message.showAndWait();
     }
 }

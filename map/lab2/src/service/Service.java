@@ -19,7 +19,9 @@ public class Service implements Observable<Student> {
     private Repository<Student, Integer> stRepo;
     private Repository<Project, Integer> prRepo;
     private Repository<Grade, String> grRepo;
-    ArrayList<Observer<Student>> studentObservers = new ArrayList<>();
+    private ArrayList<Observer<Student>> studentObservers = new ArrayList<>();
+    private ArrayList<Observer<Project>> projectObservers = new ArrayList<>();
+    private ArrayList<Observer<Grade>> gradeObservers = new ArrayList<>();
 
     public Service(Repository<Student, Integer> _stRepo, Repository<Project, Integer> _prRepo, Repository<Grade, String> _grRepo) {
         this.stRepo = _stRepo;
@@ -95,7 +97,7 @@ public class Service implements Observable<Student> {
      * @return
      *   True if it was increased, false otherwise.
      */
-    public boolean extendDeadline(String _id) {
+    public boolean extendDeadline(String _id) throws ValidationException {
         Integer id = intConverter(_id);
         Project pr = this.prRepo.findOne(id);
         Integer currentWeek = Calendar.getInstance().get(Calendar.WEEK_OF_YEAR);
@@ -149,6 +151,15 @@ public class Service implements Observable<Student> {
         return s;
     }
 
+    public Project addProjectObj(Project pr) throws ValidationException {
+        Project p = this.prRepo.save(pr);
+        if (p == null) {
+            ListEvent<Project> ev = createEvent(ListEventType.ADD, p, prRepo.findAll());
+            notifyObserversProject(ev);
+        }
+        return p;
+    }
+
     public Student deleteStudentObj(Student _st) {
         Student r = stRepo.delete(_st.getId());
         if (r != null) {
@@ -165,6 +176,25 @@ public class Service implements Observable<Student> {
             notifyObservers(ev);
         }
         return r;
+    }
+
+    public int extendDeadlineProject(Project pr) throws ValidationException {
+        Project t = this.prRepo.findOne(pr.getId());
+        Integer currentWeek = Calendar.getInstance().get(Calendar.WEEK_OF_YEAR);
+        currentWeek = currentWeek < 39 ? currentWeek + 13 : currentWeek - 39;
+        if (t != null) {
+            if (currentWeek < t.getWeek() && t.getWeek() < 14) {
+                t.incWeek();
+                if (this.prRepo.update(t) == null) {
+                    ListEvent<Project> ev = createEvent(ListEventType.UPDATE, t, prRepo.findAll());
+                    notifyObserversProject(ev);
+                    return 1;
+                }
+                return 0;
+            }
+            return 0;
+        }
+        return 2;
     }
 
     /**
@@ -197,7 +227,7 @@ public class Service implements Observable<Student> {
      * @return
      *   Returns null if the item was edited, the edited object otherwise.
      */
-    public Student update(String id, String name, String group, String email, String guide) {
+    public Student update(String id, String name, String group, String email, String guide) throws ValidationException {
         Student st = new Student(intConverter(id), name, group, email, guide);
         return this.stRepo.update(st);
     }
@@ -248,7 +278,7 @@ public class Service implements Observable<Student> {
         this.grRepo.save(grade);
     }
 
-    public Grade updateGrade(String _stId, String _prId, String _value, String _inWeek, String _obs) {
+    public Grade updateGrade(String _stId, String _prId, String _value, String _inWeek, String _obs) throws ValidationException {
         int stId = intConverter(_stId);
         int prId = intConverter(_prId);
         float value = floatConverter(_value);
@@ -268,6 +298,15 @@ public class Service implements Observable<Student> {
     public Project deleteProject(String _id) {
         Integer id = intConverter(_id);
         return this.prRepo.delete(id);
+    }
+
+    public Project deleteProjectObj(Project pr) {
+        Project r = prRepo.delete(pr.getId());
+        if (r != null) {
+            ListEvent<Project> ev = createEvent(ListEventType.REMOVE, r, prRepo.findAll());
+            notifyObserversProject(ev);
+        }
+        return r;
     }
 
     public List<Student> filterStudentsGroup(String group) {
@@ -369,6 +408,17 @@ public class Service implements Observable<Student> {
         return null;
     }
 
+    public List<Project> filterProjects(List<Predicate<Project>> pred) {
+        List<Project> lst = new ArrayList<>();
+        for (Project pr : prRepo.findAll()) {
+            lst.add(pr);
+        }
+
+        Comparator<Project> prComp = Comparator.comparing(Project::getId);
+        FilterAndSorter<Project> prFilter = new FilterAndSorter<>(lst, pred, prComp);
+        return prFilter.doFilter();
+    }
+
     public List<Grade> filterGrades1() {
         List<Grade> lst = new ArrayList<>();
         for (Grade gr : grRepo.findAll()) {
@@ -416,14 +466,38 @@ public class Service implements Observable<Student> {
         studentObservers.add(o);
     }
 
+    public void addObserverProject(utils.Observer<Project> o) {
+        projectObservers.add(o);
+    }
+
+    public void addObserverGrade(utils.Observer<Grade> o) {
+        gradeObservers.add(o);
+    }
+
     @Override
     public void removeObserver(Observer<Student> o) {
         studentObservers.remove(o);
     }
 
+    public void removeObserverProject(Observer<Project> o) {
+        projectObservers.remove(o);
+    }
+
+    public void removeObserverGrade(Observer<Grade> o) {
+        gradeObservers.remove(o);
+    }
+
     @Override
     public void notifyObservers(ListEvent<Student> event) {
-        studentObservers.forEach(x->x.notifyEvent(event));
+        studentObservers.forEach(x -> x.notifyEvent(event));
+    }
+
+    public void notifyObserversProject(ListEvent<Project> event) {
+        projectObservers.forEach(x -> x.notifyEvent(event));
+    }
+
+    public void notifyObserversGrade (ListEvent<Grade> event) {
+        gradeObservers.forEach(x -> x.notifyEvent(event));
     }
 
     private <E> ListEvent<E> createEvent(ListEventType type, final E elem, final Iterable<E> l){

@@ -82,7 +82,7 @@ public abstract class AbstractFileRepository<E extends HasID<ID>, ID> extends Ab
         return super.save(e);
     }
 
-    public E updateInMem(E e) {
+    public E updateInMem(E e) throws ValidationException {
         return super.update(e);
     }
 
@@ -116,7 +116,7 @@ public abstract class AbstractFileRepository<E extends HasID<ID>, ID> extends Ab
     }
 
     @Override
-    public E update(E e) {
+    public E update(E e) throws ValidationException {
         E entity = super.update(e);
         if (entity == null) {
             rewriteFile();

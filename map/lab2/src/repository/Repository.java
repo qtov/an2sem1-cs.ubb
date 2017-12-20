@@ -10,5 +10,5 @@ public interface Repository<E, ID> {
     E findOne(ID id);
     Iterable<E> findAll();
     Map<ID, E> getAll();
-    E update(E entity);
+    E update(E entity) throws ValidationException;
 }

@@ -75,7 +75,7 @@ public class Console {
         }
     }
 
-    private void updateTest(String id) {
+    private void updateTest(String id) throws ValidationException {
         String name = getSaltString() + " " + getSaltString();
         String group = "223";
         String email = getSaltString() + "@scs.ubbcluj.ro";
@@ -94,10 +94,13 @@ public class Console {
         String email = readInput("email");
         String guide = readInput("guide");
 
-        if (s.update(id, name, group, email, guide) == null)
+        try {
+            s.update(id, name, group, email, guide);
             System.out.println("Update successful.");
-        else
+        }
+        catch (ValidationException e) {
             System.err.println("Update unsuccessful.");
+        }
     }
 
     private void deleteTest(String id) {
@@ -150,10 +153,13 @@ public class Console {
     private void extendDeadline() {
         String id = readInput("project number");
 
-        if (this.s.extendDeadline(id))
+        try {
+            this.s.extendDeadline(id);
             System.out.println("The deadline has been increased with 1 week.");
-        else
+        }
+        catch (ValidationException e) {
             System.err.println("The deadline cannot be increased.");
+        }
     }
 
     private void displayStudents() {
@@ -193,8 +199,15 @@ public class Console {
         String value = readInput("value");
         String inWeek = readInput("given week");
         String obs = readInput("observations");
+        Grade g = null;
 
-        Grade g = this.s.updateGrade(idSt, prSt, value, inWeek, obs);
+        try {
+            g = this.s.updateGrade(idSt, prSt, value, inWeek, obs);
+        }
+        catch (ValidationException e) {
+            System.out.println(e.getMessage());
+            return;
+        }
         if (g == null) {
             System.out.println("Update successful.");
         }
@@ -336,7 +349,7 @@ public class Console {
         this.deleteTest("4");
         System.out.println();
 
-        this.updateTest("1");
+//        this.updateTest("1");
 
         System.out.println();
 

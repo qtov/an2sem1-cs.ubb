@@ -12,19 +12,19 @@
 
 <AnchorPane fx:id="rootpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StudentControllerFX">
    <children>
-      <Button fx:id="addBtn" layoutX="599.0" layoutY="263.0" mnemonicParsing="false" text="Add" />
-      <TextField fx:id="idText" layoutX="616.0" layoutY="27.0" />
-      <TextField fx:id="nameText" layoutX="616.0" layoutY="71.0" />
-      <TextField fx:id="groupText" layoutX="616.0" layoutY="115.0" />
-      <TextField fx:id="emailText" layoutX="616.0" layoutY="157.0" />
-      <TextField fx:id="guideText" layoutX="616.0" layoutY="200.0" />
+      <Button fx:id="addBtn" layoutX="599.0" layoutY="263.0" mnemonicParsing="false" onAction="#addBtnAction" text="Add" />
+      <TextField fx:id="idText" layoutX="616.0" layoutY="27.0" onKeyTyped="#filUncheck" />
+      <TextField fx:id="nameText" layoutX="616.0" layoutY="71.0" onKeyTyped="#filUncheck" />
+      <TextField fx:id="groupText" layoutX="616.0" layoutY="115.0" onKeyTyped="#filUncheck" />
+      <TextField fx:id="emailText" layoutX="616.0" layoutY="157.0" onKeyTyped="#filUncheck" />
+      <TextField fx:id="guideText" layoutX="616.0" layoutY="200.0" onKeyTyped="#filUncheck" />
       <Label layoutX="563.0" layoutY="32.0" text="id" />
       <Label layoutX="563.0" layoutY="76.0" text="name" />
       <Label layoutX="563.0" layoutY="120.0" text="group" />
       <Label layoutX="563.0" layoutY="162.0" text="email" />
       <Label layoutX="563.0" layoutY="205.0" text="guide" />
-      <Button fx:id="editBtn" layoutX="672.0" layoutY="263.0" mnemonicParsing="false" text="Edit" />
-      <Button fx:id="deleteBtn" layoutX="740.0" layoutY="263.0" mnemonicParsing="false" text="Delete" />
+      <Button fx:id="editBtn" layoutX="672.0" layoutY="263.0" mnemonicParsing="false" onAction="#editBtnAction" text="Edit" />
+      <Button fx:id="deleteBtn" layoutX="740.0" layoutY="263.0" mnemonicParsing="false" onAction="#deleteBtnAction" text="Delete" />
       <RadioButton fx:id="stRB" layoutX="37.0" layoutY="32.0" mnemonicParsing="false" text="Student" />
       <RadioButton fx:id="prRB" layoutX="135.0" layoutY="32.0" mnemonicParsing="false" onAction="#prRBAction" text="Project" />
       <RadioButton fx:id="grRB" layoutX="228.0" layoutY="32.0" mnemonicParsing="false" text="Grade" />

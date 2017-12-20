@@ -54,17 +54,20 @@ public class StudentValidator implements Validator<Student> {
     public void validate(Student st) throws ValidationException {
         List<String> error_msg = new ArrayList<>();
 
-        if (!validateEmail(st.getEmail()))
-            error_msg.add("The email is invalid.");
+        if (st.getId() < 0)
+            error_msg.add("The id is invalid.");
 
         if (!validateName(st.getName()))
             error_msg.add("The name is invalid.");
 
+        if (st.getGroup().length() != 3)
+            error_msg.add("The group is invalid.");
+
+        if (!validateEmail(st.getEmail()))
+            error_msg.add("The email is invalid.");
+
         if (!validateName(st.getGuide()))
             error_msg.add("The guide's name is invalid.");
-
-        if (st.getId() < 0)
-            error_msg.add("The id is invalid.");
 
         if (!error_msg.isEmpty())
             throw new ValidationException(String.join("\n", error_msg));

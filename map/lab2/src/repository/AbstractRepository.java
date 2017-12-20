@@ -50,7 +50,9 @@ public abstract class AbstractRepository<E extends HasID<ID>, ID> implements Rep
     }
 
     @Override
-    public E update(E entity) {
+    public E update(E entity) throws ValidationException {
+        this.val.validate(entity);
+
         if (this.map.containsKey(entity.getId())) {
             this.map.put(entity.getId(), entity);
             return null;

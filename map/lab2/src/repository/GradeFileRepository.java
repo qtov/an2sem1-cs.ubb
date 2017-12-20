@@ -35,7 +35,7 @@ public class GradeFileRepository extends AbstractFileRepository<Grade, String> {
     }
 
     @Override
-    public Grade update(Grade g) {
+    public Grade update(Grade g) throws ValidationException {
         Grade gr = super.updateInMem(g);
         if (gr == null) {
             saveToFile(g, "Modificare nota;");
