@@ -252,6 +252,10 @@ public class Service implements Observable<Student> {
         return new ArrayList<>(prRepo.getAll().values());
     }
 
+    public List<Grade> findAllListGrade() {
+        return new ArrayList<>(grRepo.getAll().values());
+    }
+
     public void addGrade(String _stId, String _prId, String _value, String _inWeek, String _obs) throws ValidationException {
         int stId = intConverter(_stId);
         int prId = intConverter(_prId);

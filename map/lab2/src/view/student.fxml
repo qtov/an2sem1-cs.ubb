@@ -27,7 +27,7 @@
       <Button fx:id="deleteBtn" layoutX="740.0" layoutY="263.0" mnemonicParsing="false" onAction="#deleteBtnAction" text="Delete" />
       <RadioButton fx:id="stRB" layoutX="37.0" layoutY="32.0" mnemonicParsing="false" text="Student" />
       <RadioButton fx:id="prRB" layoutX="135.0" layoutY="32.0" mnemonicParsing="false" onAction="#prRBAction" text="Project" />
-      <RadioButton fx:id="grRB" layoutX="228.0" layoutY="32.0" mnemonicParsing="false" text="Grade" />
+      <RadioButton fx:id="grRB" layoutX="228.0" layoutY="32.0" mnemonicParsing="false" onAction="#grRBAction" text="Grade" />
       <TableView fx:id="table" layoutX="37.0" layoutY="113.0" prefHeight="397.0" prefWidth="480.0">
         <columns>
           <TableColumn fx:id="id" prefWidth="61.0" text="id">
@@ -60,5 +60,6 @@
       <CheckBox fx:id="filNameCB" layoutX="710.0" layoutY="318.0" mnemonicParsing="false" onAction="#checkBoxAction" text="Filter Name" />
       <CheckBox fx:id="filGroupCB" layoutX="710.0" layoutY="352.0" mnemonicParsing="false" onAction="#checkBoxAction" text="Filter Group" />
       <CheckBox fx:id="filGuideCB" layoutX="710.0" layoutY="386.0" mnemonicParsing="false" onAction="#checkBoxAction" text="Filter Guide" />
+      <TextField fx:id="search" layoutX="37.0" layoutY="71.0" onKeyTyped="#searchAction" prefHeight="31.0" prefWidth="63.0" promptText="Search" />
    </children>
 </AnchorPane>

@@ -34,6 +34,8 @@ public class StudentControllerFX extends ControllerFX<Student> {
     private CheckBox filGroupCB;
     @FXML
     private CheckBox filGuideCB;
+    @FXML
+    private TextField search;
 
     public StudentControllerFX() {}
 
@@ -65,6 +67,11 @@ public class StudentControllerFX extends ControllerFX<Student> {
 
     public void prRBAction() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/project.fxml"));
+        rootpane.getChildren().setAll(pane);
+    }
+
+    public void grRBAction() throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/grade.fxml"));
         rootpane.getChildren().setAll(pane);
     }
 
@@ -125,5 +132,13 @@ public class StudentControllerFX extends ControllerFX<Student> {
         filNameCB.setSelected(false);
         filGroupCB.setSelected(false);
         filGuideCB.setSelected(false);
+    }
+
+    public void searchAction() {
+        List<Predicate<Student>> pred = new ArrayList<>();
+
+        pred.add(x -> Pattern.matches("(?i).*" + search.getText() + ".*", x.getId().toString()));
+
+        table.getItems().setAll(s.filterStudents(pred));
     }
 }

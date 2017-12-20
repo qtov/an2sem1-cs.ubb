@@ -28,6 +28,7 @@ public class ProjectControllerFX extends ControllerFX<Project> {
     @FXML private TextArea descText;
     @FXML private TextField idText;
     @FXML private TextField weekText;
+    @FXML private TextField search;
 
     public ProjectControllerFX() {}
 
@@ -58,6 +59,11 @@ public class ProjectControllerFX extends ControllerFX<Project> {
 
     public void stRBAction() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/student.fxml"));
+        rootpane.getChildren().setAll(pane);
+    }
+
+    public void grRBAction() throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/grade.fxml"));
         rootpane.getChildren().setAll(pane);
     }
 
@@ -125,5 +131,13 @@ public class ProjectControllerFX extends ControllerFX<Project> {
         if (s.deleteProjectObj(pr) == null) {
             handleError("ID not found/invalid.");
         }
+    }
+
+    public void searchAction() {
+        List<Predicate<Project>> pred = new ArrayList<>();
+
+        pred.add(x -> Pattern.matches("(?i).*" + search.getText() + ".*", x.getId().toString()));
+
+        table.getItems().setAll(s.filterProjects(pred));
     }
 }
