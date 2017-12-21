@@ -75,7 +75,7 @@ public class ProjectControllerFX extends ControllerFX<Project> {
         }
 
         if (filLowWeekCB.isSelected()) {
-            pred.add(x -> x.getWeek() < intConverter(weekText.getText()));
+            pred.add(x -> x.getWeek() <= intConverter(weekText.getText()));
         }
 
         if (filNewCB.isSelected()) {
@@ -87,11 +87,17 @@ public class ProjectControllerFX extends ControllerFX<Project> {
         }
 
         table.getItems().setAll(s.filterProjects(pred));
+        if (!search.getText().equals("")) {
+            filterSearch();
+        }
     }
 
-    public void filUncheck() {
-        filNewCB.setSelected(false);
+    public void filUncheckWeek() {
         filLowWeekCB.setSelected(false);
+        filNewCB.setSelected(false);
+    }
+
+    public void filUncheckDesc() {
         filDescCB.setSelected(false);
     }
 
@@ -133,11 +139,20 @@ public class ProjectControllerFX extends ControllerFX<Project> {
         }
     }
 
-    public void searchAction() {
+    private void filterSearch() {
         List<Predicate<Project>> pred = new ArrayList<>();
 
         pred.add(x -> Pattern.matches("(?i).*" + search.getText() + ".*", x.getId().toString()));
 
-        table.getItems().setAll(s.filterProjects(pred));
+        table.getItems().setAll(intersection(s.filterProjects(pred), table.getItems()));
+    }
+
+    public void searchAction() {
+        if (!search.getText().equals("")) {
+            filterSearch();
+        }
+        else {
+            checkBoxAction();
+        }
     }
 }

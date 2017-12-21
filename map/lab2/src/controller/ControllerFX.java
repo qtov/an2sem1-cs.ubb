@@ -15,6 +15,7 @@ import service.Service;
 import utils.ListEvent;
 import utils.Observer;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -58,6 +59,28 @@ public abstract class ControllerFX<E> implements Observer<E> {
             newX = -1;
         }
         return newX;
+    }
+
+    public Float floatConverter(String x) {
+        float newX;
+        try {
+            newX = Float.parseFloat(x);
+        } catch (NumberFormatException e) {
+            newX = -1;
+        }
+        return newX;
+    }
+
+    protected List<E> intersection(List<E> list1, List<E> list2) {
+        List<E> list = new ArrayList<>();
+
+        for (E t : list1) {
+            if(list2.contains(t)) {
+                list.add(t);
+            }
+        }
+
+        return list;
     }
 
     protected void handleError(String text) {

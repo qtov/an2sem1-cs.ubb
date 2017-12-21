@@ -14,8 +14,8 @@
 <AnchorPane fx:id="rootpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProjectControllerFX">
    <children>
       <Button fx:id="addBtn" layoutX="567.0" layoutY="374.0" mnemonicParsing="false" onAction="#addBtnAction" text="Add" />
-      <TextField fx:id="idText" layoutX="616.0" layoutY="27.0" onKeyTyped="#filUncheck" />
-      <TextField fx:id="weekText" layoutX="617.0" layoutY="275.0" onKeyTyped="#filUncheck" />
+      <TextField fx:id="idText" layoutX="616.0" layoutY="27.0" />
+      <TextField fx:id="weekText" layoutX="617.0" layoutY="275.0" onKeyTyped="#filUncheckWeek" />
       <Label layoutX="593.0" layoutY="32.0" text="id" />
       <Label layoutX="530.0" layoutY="75.0" text="description" />
       <Label layoutX="567.0" layoutY="280.0" text="week" />
@@ -46,7 +46,7 @@
       <CheckBox fx:id="filDescCB" layoutX="621.0" layoutY="434.0" mnemonicParsing="false" onAction="#checkBoxAction" text="Filter Description" />
       <CheckBox fx:id="filLowWeekCB" layoutX="621.0" layoutY="461.0" mnemonicParsing="false" onAction="#checkBoxAction" text="Filter Lower than week" />
       <CheckBox fx:id="filNewCB" layoutX="621.0" layoutY="489.0" mnemonicParsing="false" onAction="#checkBoxAction" text="Filter new projects" />
-      <TextArea fx:id="descText" layoutX="617.0" layoutY="67.0" onKeyTyped="#filUncheck" prefHeight="200.0" prefWidth="187.0" />
+      <TextArea fx:id="descText" layoutX="617.0" layoutY="67.0" onKeyTyped="#filUncheckDesc" prefHeight="200.0" prefWidth="187.0" />
       <TextField fx:id="search" layoutX="37.0" layoutY="71.0" onKeyTyped="#searchAction" prefHeight="31.0" prefWidth="63.0" promptText="Search" />
    </children>
 </AnchorPane>

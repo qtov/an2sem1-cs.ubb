@@ -31,7 +31,7 @@ public class GradeFileRepository extends AbstractFileRepository<Grade, String> {
             saveToFile(g, "Agaugare nota;");
         }
 
-        return g;
+        return gr;
     }
 
     @Override

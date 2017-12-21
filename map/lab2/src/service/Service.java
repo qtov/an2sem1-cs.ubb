@@ -160,6 +160,38 @@ public class Service implements Observable<Student> {
         return p;
     }
 
+    public Grade addGradeObj(Grade gr) throws ValidationException {
+        if (prRepo.findOne(gr.getPrId()) == null) {
+            gr.setPrId(-1);
+        }
+
+        if (stRepo.findOne(gr.getStId()) == null) {
+            gr.setStId(-1);
+        }
+
+        if (gr.getInWeek() > gr.getDeadline() + 2)
+            gr.setValue(1);
+        else if (gr.getInWeek() > gr.getDeadline())
+            gr.setValue(gr.getValue() - 2 * (gr.getInWeek() - gr.getDeadline()));
+
+        Grade g = this.grRepo.save(gr);
+
+        if (g == null) {
+            ListEvent<Grade> ev = createEvent(ListEventType.ADD, g, grRepo.findAll());
+            notifyObserversGrade(ev);
+        }
+        return g;
+    }
+
+    public Grade updateGradeObj(Grade t) throws ValidationException {
+        Grade r = grRepo.update(t);
+        if (r == null) {
+            ListEvent<Grade> ev = createEvent(ListEventType.UPDATE, r, grRepo.findAll());
+            notifyObserversGrade(ev);
+        }
+        return r;
+    }
+
     public Student deleteStudentObj(Student _st) {
         Student r = stRepo.delete(_st.getId());
         if (r != null) {

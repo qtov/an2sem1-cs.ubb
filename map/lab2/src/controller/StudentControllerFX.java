@@ -91,6 +91,9 @@ public class StudentControllerFX extends ControllerFX<Student> {
         }
 
         table.getItems().setAll(s.filterStudents(pred));
+        if (!search.getText().equals("")) {
+            filterSearch();
+        }
     }
 
     public void addBtnAction() {
@@ -128,17 +131,32 @@ public class StudentControllerFX extends ControllerFX<Student> {
         }
     }
 
-    public void filUncheck() {
+    public void filUncheckName() {
         filNameCB.setSelected(false);
+    }
+
+    public void filUncheckGroup() {
         filGroupCB.setSelected(false);
+    }
+
+    public void filUncheckGuide() {
         filGuideCB.setSelected(false);
     }
 
-    public void searchAction() {
+    private void filterSearch() {
         List<Predicate<Student>> pred = new ArrayList<>();
 
         pred.add(x -> Pattern.matches("(?i).*" + search.getText() + ".*", x.getId().toString()));
 
-        table.getItems().setAll(s.filterStudents(pred));
+        table.getItems().setAll(intersection(s.filterStudents(pred), table.getItems()));
+    }
+
+    public void searchAction() {
+        if (!search.getText().equals("")) {
+            filterSearch();
+        }
+        else {
+            checkBoxAction();
+        }
     }
 }

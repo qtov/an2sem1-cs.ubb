@@ -14,10 +14,10 @@
 <AnchorPane fx:id="rootpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GradeControllerFX">
    <children>
       <Button fx:id="addBtn" layoutX="574.0" layoutY="388.0" mnemonicParsing="false" onAction="#addBtnAction" prefHeight="31.0" prefWidth="79.0" text="Add" />
-      <TextField fx:id="idStText" layoutX="616.0" layoutY="27.0" onKeyTyped="#filUncheck" />
-      <TextField fx:id="idPrText" layoutX="616.0" layoutY="71.0" onKeyTyped="#filUncheck" />
-      <TextField fx:id="valueText" layoutX="616.0" layoutY="115.0" onKeyTyped="#filUncheck" />
-      <TextField fx:id="weekText" layoutX="616.0" layoutY="157.0" onKeyTyped="#filUncheck" />
+      <TextField fx:id="idStText" layoutX="616.0" layoutY="27.0" />
+      <TextField fx:id="idPrText" layoutX="616.0" layoutY="71.0" />
+      <TextField fx:id="valueText" layoutX="616.0" layoutY="115.0" onKeyTyped="#filUncheckValue" />
+      <TextField fx:id="weekText" layoutX="616.0" layoutY="157.0" onKeyTyped="#filUncheckWeek" />
       <Label layoutX="537.0" layoutY="32.0" text="id student" />
       <Label layoutX="539.0" layoutY="76.0" text="id project" />
       <Label layoutX="563.0" layoutY="120.0" text="value" />
@@ -29,38 +29,44 @@
       <RadioButton fx:id="grRB" layoutX="228.0" layoutY="32.0" mnemonicParsing="false" text="Grade" />
       <TableView fx:id="table" layoutX="37.0" layoutY="113.0" prefHeight="397.0" prefWidth="480.0">
         <columns>
-          <TableColumn fx:id="stId" prefWidth="52.0" text="id st">
+          <TableColumn fx:id="stId" prefWidth="41.0" text="id st">
            <cellValueFactory>
               <PropertyValueFactory property="stId" />
            </cellValueFactory>
           </TableColumn>
-          <TableColumn fx:id="prId" prefWidth="62.0" text="id pr">
+          <TableColumn fx:id="prId" prefWidth="49.0" text="id pr">
              <cellValueFactory>
                 <PropertyValueFactory property="prId" />
              </cellValueFactory>
           </TableColumn>
-            <TableColumn fx:id="value" prefWidth="72.0" text="value">
-               <cellValueFactory>
-                  <PropertyValueFactory property="value" />
-               </cellValueFactory>
-            </TableColumn>
-            <TableColumn fx:id="inWeek" prefWidth="96.0" text="given week">
+            <TableColumn fx:id="studentName" prefWidth="137.0" text="student">
                <cellValueFactory>
                   <PropertyValueFactory property="inWeek" />
                </cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="guide" prefWidth="197.0" text="observations">
+            <TableColumn fx:id="value" prefWidth="45.0" text="value">
+               <cellValueFactory>
+                  <PropertyValueFactory property="value" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="inWeek1" prefWidth="45.0" text="week">
+               <cellValueFactory>
+                  <PropertyValueFactory property="inWeek" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="guide" prefWidth="162.0" text="observations">
                <cellValueFactory>
                   <PropertyValueFactory property="obs" />
                </cellValueFactory>
             </TableColumn>
         </columns>
       </TableView>
-      <CheckBox fx:id="filNameCB" layoutX="698.0" layoutY="443.0" mnemonicParsing="false" onAction="#checkBoxAction" text="Filter id student" />
-      <CheckBox fx:id="filGroupCB" layoutX="535.0" layoutY="443.0" mnemonicParsing="false" onAction="#checkBoxAction" text="Filter lower value" />
-      <CheckBox fx:id="filGuideCB" layoutX="535.0" layoutY="483.0" mnemonicParsing="false" onAction="#checkBoxAction" text="Filter higher value" />
+      <CheckBox fx:id="filHighWeekCB" layoutX="698.0" layoutY="443.0" mnemonicParsing="false" onAction="#checkBoxAction" text="Filter high week" />
+      <CheckBox fx:id="filLowCB" layoutX="535.0" layoutY="443.0" mnemonicParsing="false" onAction="#checkBoxAction" text="Filter lower value" />
+      <CheckBox fx:id="filHighCB" layoutX="535.0" layoutY="483.0" mnemonicParsing="false" onAction="#checkBoxAction" text="Filter higher value" />
       <TextArea fx:id="obsText" layoutX="616.0" layoutY="203.0" prefHeight="158.0" prefWidth="187.0" />
-      <TextField fx:id="search" layoutX="37.0" layoutY="71.0" onKeyTyped="#searchAction" promptText="Search Student Name" />
+      <TextField fx:id="search" layoutX="37.0" layoutY="71.0" onKeyReleased="#searchAction" promptText="Search Student Name" />
       <Label layoutX="311.0" layoutY="76.0" text="None" />
+      <CheckBox fx:id="filLowWeekCB" layoutX="698.0" layoutY="483.0" mnemonicParsing="false" onAction="#checkBoxAction" text="Filter low week" />
    </children>
 </AnchorPane>
