@@ -145,7 +145,7 @@ public class GradeControllerFX extends ControllerFX<Grade> {
         }
     }
 
-    public void filterSearch() {
+    private void filterSearch() {
         List<Predicate<Student>> predSt = new ArrayList<>();
 
         predSt.add(x -> Pattern.matches("(?i).*" + search.getText() + ".*", x.getName()));
