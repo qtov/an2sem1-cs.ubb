@@ -1,0 +1,9 @@
+(defun adancime (l)
+	(cond
+		((null l) 1)
+		((atom l) 0)
+		(t (+ 1 (apply #'max (mapcar #'adancime l))))
+	)
+)
+
+(write (adancime '(1 1 1 1 (2 2 (3 3 3 (4 4 (5 5 5 5) 4 4) 3) 2 (3 (4 4 4 (5 5 (6 6 (7 7 7 7) 6) 5 5) 4) 3) 2) 1 1 1)))
