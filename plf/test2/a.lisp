@@ -1,0 +1,33 @@
+(defun maxx (l m)
+	(cond
+		((null l) m)
+		((and (numberp (car l)) (> (car l) m)) (maxx (cdr l) (car l)))
+		((atom (car l)) (maxx (cdr l) m))
+		(t (max (maxx (car l) m) (maxx (cdr l) m)))
+	)
+)
+
+(defun elim (l e)
+	(cond
+		((null l) nil)
+		((and (numberp (car l)) (= (car l) e)) (elim (cdr l) e))
+		((atom (car l)) (cons (car l) (elim (cdr l) e)))
+		(t (cons (elim (car l) e) (elim (cdr l) e)))
+	)
+)
+
+(defun elimo (l)
+	(elim l (maxx l 0))
+)
+
+; (write (maxx '(1 2 3 4 a 5 d 4 3 7 2 1) 1))
+; (write-line "")
+(write (elimo '(1 2 3 4 4 1 2 3 2 3 4 4 (1 2 (4 5 3 2) 3 4))))
+(write-line "")
+(write (elimo '(1 2 3 4 4 1 2 3 7 7 2 3 4 4 (1 7 2 (4 (7) 3 2) 3 4))))
+(write-line "")
+(write (elimo '(1 2 3 4 4 1 2 3 2 3 4 4 (1 2 (4 5 3 2 8 8 8 8 8 8 8) 3 4))))
+(write-line "")
+(write (elimo '(8 2 3 4 4 1 8 8 2 3 2 3 4 4 (1 8 2 (4 5 8 (8 8 (8 8 1) 1) 3 2) 3 4))))
+(write-line "")
+(write (elimo '(1 2 3 4 5 (6 h b) 6 6 6 (s 1) 3)))

@@ -1,8 +1,20 @@
+(defun maxone (&rest l)
+	(maxx l (car l))	
+)
+
+(defun maxx (l m)
+	(cond
+	  	((null l) m)
+		((> (car l) m) (maxx (cdr l) (car l)))
+		(t (maxx (cdr l) m))
+	)
+)
+
 (defun adancime (l)
 	(cond
 		((null l) 1)
 		((atom l) 0)
-		(t (+ 1 (apply #'max (mapcar #'adancime l))))
+		(t (+ 1 (apply #'maxone (mapcar #'adancime l))))
 	)
 )
 
