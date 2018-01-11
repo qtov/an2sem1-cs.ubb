@@ -17,7 +17,22 @@ namespace lab7.UI
 
         private void SaveStudent()
         {
-            Console.WriteLine("Het");
+            Console.Write("Id: ");
+            string id = Console.ReadLine();
+            
+            Console.Write("Name: ");
+            string name = Console.ReadLine();
+            
+            Console.Write("Group: ");
+            string group = Console.ReadLine();
+            
+            Console.Write("Email: ");
+            string email = Console.ReadLine();
+            
+            Console.Write("Guide: ");
+            string guide = Console.ReadLine();
+            
+            
         }
         
         private void UpdateStudent()
