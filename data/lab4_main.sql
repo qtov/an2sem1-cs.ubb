@@ -1,5 +1,6 @@
 use proj1;
 
+insert into categories values ('db_test');
 delete from Teste
 dbcc checkident('Teste', reseed, 0);
 insert into Teste (Nume) values ('TesteTabele');
@@ -106,7 +107,7 @@ open ctest
 			declare @t_t_nr int
 			declare @t_t_p int
 
-			insert into RulariTeste (Descriere, IncepeLa, SeIncheieLa) values ('Adaugare in tabele', SYSDATETIME(), null);
+			insert into RulariTeste (Descriere, IncepeLa, SeIncheieLa) values ('Add in table', SYSDATETIME(), null);
 			declare c_t_t cursor
 			for
 				select * from TesteTabele
@@ -128,7 +129,7 @@ open ctest
 			declare @t_v_ct int
 			declare @t_v_cv int
 
-			insert into RulariTeste (Descriere, IncepeLa, SeIncheieLa) values ('Select din view-uri', SYSDATETIME(), null);
+			insert into RulariTeste (Descriere, IncepeLa, SeIncheieLa) values ('Select view', SYSDATETIME(), null);
 			declare c_t_v cursor
 			for
 				select * from TesteViewuri
@@ -146,7 +147,7 @@ open ctest
 		end
 		else if @name_test = 'delete'
 		begin
-			insert into RulariTeste (Descriere, IncepeLa, SeIncheieLa) values ('Delete din tabele', SYSDATETIME(), null);
+			insert into RulariTeste (Descriere, IncepeLa, SeIncheieLa) values ('Delete from table', SYSDATETIME(), null);
 			delete from topic_follows;
 			delete from topics;
 			delete from users;
@@ -168,3 +169,6 @@ update RulariTeste set SeIncheieLa = SYSDATETIME() where CodRulareTest = (select
 dbcc checkident('users', reseed, 0);
 dbcc checkident('topics', reseed, 0);
 dbcc checkident('RulariTeste', reseed, 0);
+
+delete from users;
+exec addfields1 10000
