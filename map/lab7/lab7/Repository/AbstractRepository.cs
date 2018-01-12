@@ -17,6 +17,7 @@ namespace lab7.Repository
 
         public T Save(T t)
         {
+            _val.Validate(t);
             lst.Add(t.GetId(), t);
             return lst.ContainsValue(t) ? default(T) : t;
         }
@@ -40,6 +41,7 @@ namespace lab7.Repository
         {
             if (!lst.ContainsKey(t.GetId()))
                 return t;
+            _val.Validate(t);
             lst[t.GetId()] = t;
             return default(T);
         }

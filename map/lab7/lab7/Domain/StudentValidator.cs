@@ -26,7 +26,7 @@ namespace lab7.Domain
         {
             var errorMsg = new List<string>();
             
-            if (st.Id < 0)
+            if (st.Id <= 0)
                 errorMsg.Add("The id is invalid.");
 
             if (!ValidateName(st.Name))
@@ -41,7 +41,7 @@ namespace lab7.Domain
             if (!ValidateName(st.Guide))
                 errorMsg.Add("The guide's name is invalid.");
 
-            if (!errorMsg.Any())
+            if (errorMsg.Any())
                 throw new ValidationException(String.Join("\n", errorMsg.ToArray()));
         }
     }

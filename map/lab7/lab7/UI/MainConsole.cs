@@ -31,17 +31,57 @@ namespace lab7.UI
             
             Console.Write("Guide: ");
             string guide = Console.ReadLine();
-            
-            
+
+            try
+            {
+                _s.SaveStudent(id, name, group, email, guide);
+            }
+            catch (ValidationException e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
         
         private void UpdateStudent()
         {
+            Console.Write("Id: ");
+            string id = Console.ReadLine();
             
+            Console.Write("Name: ");
+            string name = Console.ReadLine();
+            
+            Console.Write("Group: ");
+            string group = Console.ReadLine();
+            
+            Console.Write("Email: ");
+            string email = Console.ReadLine();
+            
+            Console.Write("Guide: ");
+            string guide = Console.ReadLine();
+
+            try
+            {
+                _s.UpdateStudent(id, name, group, email, guide);
+            }
+            catch (ValidationException e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         private void DeleteStudent()
         {
+            Console.Write("Id: ");
+            string id = Console.ReadLine();
+
+            if (_s.DeleteStudent(id))
+            {
+                Console.WriteLine("Successful.");
+            }
+            else
+            {
+                Console.WriteLine("Student not found.");
+            }
         }
         
         private void SaveProject()
@@ -122,6 +162,7 @@ namespace lab7.UI
             while (choice != "0")
             {
                 ShowMenu();
+                Console.Write("Choice: ");
                 choice = Console.ReadLine();
                 if (choice != null && _opt.ContainsKey(choice))
                     _opt[choice].Invoke();

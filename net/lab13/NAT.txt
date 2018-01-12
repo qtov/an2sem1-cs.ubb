@@ -1,0 +1,13 @@
+>enable
+#ctrl+z
+#conf t
+#ip nat inside source static 10.0.0.3 193.226.40.1
+#interf fast 0/1
+#ip nat inside
+#exit
+#interf fast 0/0
+#ip nat outside
+#exit
+
+#ctrl+z
+#debug ip nat

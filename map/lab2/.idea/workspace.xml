@@ -2,23 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="59d9463f-4bcb-4259-ae37-25da6bebc412" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/../../data/lab4_main.sql" afterPath="$PROJECT_DIR$/../../data/lab4_main.sql" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/lab2.iml" afterPath="$PROJECT_DIR$/lab2.iml" />
-      <change beforePath="$PROJECT_DIR$/out/production/lab2/controller/GradeControllerFX.class" afterPath="$PROJECT_DIR$/out/production/lab2/controller/GradeControllerFX.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/lab2/service/Service$1.class" afterPath="$PROJECT_DIR$/out/production/lab2/service/Service$1.class" />
       <change beforePath="$PROJECT_DIR$/../lab7/.idea/.idea.lab7/.idea/contentModel.xml" afterPath="$PROJECT_DIR$/../lab7/.idea/.idea.lab7/.idea/contentModel.xml" />
       <change beforePath="$PROJECT_DIR$/../lab7/.idea/.idea.lab7/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../lab7/.idea/.idea.lab7/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/../lab7/lab7/Domain/StudentValidator.cs" afterPath="$PROJECT_DIR$/../lab7/lab7/Domain/StudentValidator.cs" />
       <change beforePath="$PROJECT_DIR$/../lab7/lab7/Program.cs" afterPath="$PROJECT_DIR$/../lab7/lab7/Program.cs" />
+      <change beforePath="$PROJECT_DIR$/../lab7/lab7/Repository/AbstractRepository.cs" afterPath="$PROJECT_DIR$/../lab7/lab7/Repository/AbstractRepository.cs" />
+      <change beforePath="$PROJECT_DIR$/../lab7/lab7/Service/Service.cs" afterPath="$PROJECT_DIR$/../lab7/lab7/Service/Service.cs" />
+      <change beforePath="$PROJECT_DIR$/../lab7/lab7/UI/MainConsole.cs" afterPath="$PROJECT_DIR$/../lab7/lab7/UI/MainConsole.cs" />
       <change beforePath="$PROJECT_DIR$/../lab7/lab7/bin/Debug/lab7.exe" afterPath="$PROJECT_DIR$/../lab7/lab7/bin/Debug/lab7.exe" />
       <change beforePath="$PROJECT_DIR$/../lab7/lab7/bin/Debug/lab7.pdb" afterPath="$PROJECT_DIR$/../lab7/lab7/bin/Debug/lab7.pdb" />
       <change beforePath="$PROJECT_DIR$/../lab7/lab7/lab7.csproj" afterPath="$PROJECT_DIR$/../lab7/lab7/lab7.csproj" />
-      <change beforePath="$PROJECT_DIR$/../lab7/lab7/obj/Debug/lab7.csproj.FileListAbsolute.txt" afterPath="$PROJECT_DIR$/../lab7/lab7/obj/Debug/lab7.csproj.FileListAbsolute.txt" />
-      <change beforePath="$PROJECT_DIR$/../lab7/lab7/obj/Debug/lab7.csprojResolveAssemblyReference.cache" afterPath="$PROJECT_DIR$/../lab7/lab7/obj/Debug/lab7.csprojResolveAssemblyReference.cache" />
       <change beforePath="$PROJECT_DIR$/../lab7/lab7/obj/Debug/lab7.exe" afterPath="$PROJECT_DIR$/../lab7/lab7/obj/Debug/lab7.exe" />
       <change beforePath="$PROJECT_DIR$/../lab7/lab7/obj/Debug/lab7.pdb" afterPath="$PROJECT_DIR$/../lab7/lab7/obj/Debug/lab7.pdb" />
     </list>
@@ -32,20 +26,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="28" column="1" lean-forward="false" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ControllerFX.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/controller/ControllerFX.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-105">
+            <state relative-caret-position="84">
               <caret line="22" column="22" lean-forward="false" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
               <folding />
             </state>
@@ -56,10 +40,8 @@
         <entry file="file://$PROJECT_DIR$/src/repository/AbstractRepository.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="672">
-              <caret line="46" column="13" lean-forward="true" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
-              <folding>
-                <element signature="e#263#270#0" expanded="true" />
-              </folding>
+              <caret line="46" column="13" lean-forward="false" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -84,11 +66,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Student.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Student.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/domain/Student.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1029">
-              <caret line="83" column="8" lean-forward="true" selection-start-line="83" selection-start-column="8" selection-end-line="93" selection-end-column="20" />
+            <state relative-caret-position="469">
+              <caret line="102" column="23" lean-forward="false" selection-start-line="102" selection-start-column="23" selection-end-line="102" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -97,8 +79,8 @@
       <file leaf-file-name="StudentValidator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/repository/StudentValidator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="451">
-              <caret line="36" column="4" lean-forward="true" selection-start-line="36" selection-start-column="4" selection-end-line="42" selection-end-column="5" />
+            <state relative-caret-position="651">
+              <caret line="36" column="4" lean-forward="false" selection-start-line="36" selection-start-column="4" selection-end-line="42" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -117,18 +99,28 @@
       <file leaf-file-name="Console.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ui/Console.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5320">
+            <state relative-caret-position="6216">
               <caret line="307" column="8" lean-forward="false" selection-start-line="307" selection-start-column="8" selection-end-line="316" selection-end-column="48" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Service.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Service.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/service/Service.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="420">
-              <caret line="139" column="85" lean-forward="true" selection-start-line="139" selection-start-column="21" selection-end-line="139" selection-end-column="85" />
+              <caret line="139" column="85" lean-forward="false" selection-start-line="139" selection-start-column="21" selection-end-line="139" selection-end-column="85" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Project.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/domain/Project.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-35">
+              <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -179,8 +171,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -227,8 +221,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -361,11 +353,12 @@
       <workItem from="1515505956551" duration="198000" />
       <workItem from="1515617414666" duration="1944000" />
       <workItem from="1515689949793" duration="5288000" />
+      <workItem from="1515736800293" duration="337000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7430000" />
+    <option name="totallyTimeSpent" value="7767000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -383,7 +376,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15416667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -419,13 +412,91 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/ControllerFX.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="22" column="22" lean-forward="false" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/repository/AbstractRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="672">
+          <caret line="46" column="13" lean-forward="true" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/repository/AbstractFileRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="16" column="22" lean-forward="false" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/repository/Validator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="17" lean-forward="false" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/domain/Student.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1092">
+          <caret line="83" column="8" lean-forward="true" selection-start-line="83" selection-start-column="8" selection-end-line="93" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/repository/StudentValidator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="651">
+          <caret line="36" column="4" lean-forward="true" selection-start-line="36" selection-start-column="4" selection-end-line="42" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/repository/ValidationException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/Console.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6216">
+          <caret line="307" column="8" lean-forward="false" selection-start-line="307" selection-start-column="8" selection-end-line="316" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/Service.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2562">
+          <caret line="139" column="85" lean-forward="true" selection-start-line="139" selection-start-column="21" selection-end-line="139" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="28" column="1" lean-forward="false" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/repository/AbstractRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
           <caret line="8" column="22" lean-forward="false" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
-          <folding>
-            <element signature="e#263#270#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -471,7 +542,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/ControllerFX.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-105">
+        <state relative-caret-position="84">
           <caret line="22" column="22" lean-forward="false" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
           <folding />
         </state>
@@ -480,10 +551,8 @@
     <entry file="file://$PROJECT_DIR$/src/repository/AbstractRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="672">
-          <caret line="46" column="13" lean-forward="true" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
-          <folding>
-            <element signature="e#263#270#0" expanded="true" />
-          </folding>
+          <caret line="46" column="13" lean-forward="false" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -503,18 +572,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/domain/Student.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1029">
-          <caret line="83" column="8" lean-forward="true" selection-start-line="83" selection-start-column="8" selection-end-line="93" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/repository/StudentValidator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="36" column="4" lean-forward="true" selection-start-line="36" selection-start-column="4" selection-end-line="42" selection-end-column="5" />
+        <state relative-caret-position="651">
+          <caret line="36" column="4" lean-forward="false" selection-start-line="36" selection-start-column="4" selection-end-line="42" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -529,7 +590,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ui/Console.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5320">
+        <state relative-caret-position="6216">
           <caret line="307" column="8" lean-forward="false" selection-start-line="307" selection-start-column="8" selection-end-line="316" selection-end-column="48" />
           <folding />
         </state>
@@ -538,7 +599,23 @@
     <entry file="file://$PROJECT_DIR$/src/service/Service.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
-          <caret line="139" column="85" lean-forward="true" selection-start-line="139" selection-start-column="21" selection-end-line="139" selection-end-column="85" />
+          <caret line="139" column="85" lean-forward="false" selection-start-line="139" selection-start-column="21" selection-end-line="139" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/domain/Project.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-35">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/domain/Student.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="469">
+          <caret line="102" column="23" lean-forward="false" selection-start-line="102" selection-start-column="23" selection-end-line="102" selection-end-column="23" />
           <folding />
         </state>
       </provider>

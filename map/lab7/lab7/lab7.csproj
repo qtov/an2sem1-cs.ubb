@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Project.cs" />
+    <Compile Include="Domain\ProjectValidator.cs" />
     <Compile Include="Domain\Student.cs" />
     <Compile Include="Domain\StudentValidator.cs" />
     <Compile Include="Domain\IValidator.cs" />
@@ -48,6 +50,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\AbstractRepository.cs" />
+    <Compile Include="Repository\FileProjectRepository.cs" />
     <Compile Include="Repository\HasId.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\FileStudentRepository.cs" />

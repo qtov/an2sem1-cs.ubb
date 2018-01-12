@@ -75,7 +75,7 @@ namespace lab7.Domain
 
             Student student = (Student) o;
 
-            if (_id == student.GetId() || student._name != null)
+            if (_id != student.GetId() || student._name != null)
                 return false;
             return true;
         }

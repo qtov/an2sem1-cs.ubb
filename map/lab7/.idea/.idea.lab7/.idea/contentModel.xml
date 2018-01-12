@@ -7,6 +7,8 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Domain" t="Include">
           <e p="IValidator.cs" t="Include" />
+          <e p="Project.cs" t="Include" />
+          <e p="ProjectValidator.cs" t="Include" />
           <e p="Student.cs" t="Include" />
           <e p="StudentValidator.cs" t="Include" />
           <e p="ValidationException.cs" t="Include" />
@@ -19,6 +21,7 @@
         </e>
         <e p="Repository" t="Include">
           <e p="AbstractRepository.cs" t="Include" />
+          <e p="FileProjectRepository.cs" t="Include" />
           <e p="FileStudentRepository.cs" t="Include" />
           <e p="HasId.cs" t="Include" />
           <e p="IRepository.cs" t="Include" />

@@ -18,13 +18,26 @@ namespace lab7.Service
         {
             int newId;
             
-            if (Int32.TryParse(id, out newId))
-            {
-                Student st = new Student(newId, name, group, email, guide);
-                return _stRepo.Save(st);
-            }
+            Int32.TryParse(id, out newId);
+            Student st = new Student(newId, name, group, email, guide);
+            return _stRepo.Save(st);
+        }
 
-            return default(Student);
+        public Student UpdateStudent(string id, string name, string group, string email, string guide)
+        {
+            int newId;
+            
+            Int32.TryParse(id, out newId);
+            Student st = new Student(newId, name, group, email, guide);
+            return _stRepo.Update(st);
+        }
+
+        public bool DeleteStudent(string id)
+        {
+            int newId;
+
+            Int32.TryParse(id, out newId);
+            return _stRepo.Delete(newId);
         }
 
         public Dictionary<int, Student> GetAllStudent()
