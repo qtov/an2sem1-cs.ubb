@@ -69,7 +69,7 @@ namespace lab7.Domain
         
         public override string ToString()
         {
-            return _stId + ";" + _prId + ";" + _value + ";" + _inWeek + ";" + _obs;
+            return "Student id: " + _stId + "\nProject id: " + _prId + "\nValue: " + _value + "\nGiven in week: " + _inWeek + "\nObservations: " + _obs + "\n";
         }
     }
 }

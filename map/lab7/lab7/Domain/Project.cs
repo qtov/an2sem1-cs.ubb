@@ -47,7 +47,7 @@ namespace lab7.Domain
         
         public override string ToString()
         {
-            return _id + ";" + _desc + ";" + _week;
+            return "Id: " + _id + "\nDescription: " + _desc + "\nDeadline: " + _week + "\n";
         }
         
         public override bool Equals(Object o)

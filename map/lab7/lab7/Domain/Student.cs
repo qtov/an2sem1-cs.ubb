@@ -62,7 +62,7 @@ namespace lab7.Domain
 
         public override string ToString()
         {
-            return _id + ";" + _name + ";" + _group + ";" + _email + ";" + _guide;
+            return "Id: " + _id + "\n" + "Name: " + _name + "\nGroup: " + _group + "\nEmail: " + _email + "\nGuide: " + _guide + "\n";
         }
 
         public override bool Equals(Object o)

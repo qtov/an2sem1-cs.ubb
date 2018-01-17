@@ -35,6 +35,9 @@ namespace lab7.UI
             try
             {
                 _s.SaveStudent(id, name, group, email, guide);
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("\n" + "Add successful." + "\n");
+                Console.ResetColor();
             }
             catch (ValidationException e)
             {
@@ -69,7 +72,18 @@ namespace lab7.UI
 
             try
             {
-                _s.UpdateStudent(id, name, group, email, guide);
+                if (_s.UpdateStudent(id, name, group, email, guide) == default(Student))
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("\n" + "Update successful." + "\n");
+                    Console.ResetColor();
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("\n" + "Id not found." + "\n");
+                    Console.ResetColor();
+                }
             }
             catch (ValidationException e)
             {
@@ -86,7 +100,9 @@ namespace lab7.UI
 
             if (_s.DeleteStudent(id))
             {
-                Console.WriteLine("Successful.");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("\n" + "Delete successful." + "\n");
+                Console.ResetColor();
             }
             else
             {
@@ -110,6 +126,9 @@ namespace lab7.UI
             try
             {
                 _s.SaveProject(id, desc, deadline);
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("\n" + "Add successful." + "\n");
+                Console.ResetColor();
             }
             catch (ValidationException e)
             {
@@ -198,6 +217,9 @@ namespace lab7.UI
             try
             {
                 _s.SaveGrade(idSt, idPr, grade, inWeek, obs);
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("\n" + "Add successful." + "\n");
+                Console.ResetColor();
             }
             catch (ValidationException e)
             {
@@ -208,7 +230,7 @@ namespace lab7.UI
             catch (KeyNotFoundException e)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("\n" + "Studentul sau proiectul nu exista" + "\n");
+                Console.WriteLine("\n" + "Studentul or project does not exist." + "\n");
                 Console.ResetColor();
             }
             catch (ArgumentException e)
@@ -238,7 +260,18 @@ namespace lab7.UI
 
             try
             {
-                _s.UpdateGrade(idSt, idPr, grade, inWeek, obs);
+                if (_s.UpdateGrade(idSt, idPr, grade, inWeek, obs) == default(Grade))
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("\n" + "Update successful." + "\n");
+                    Console.ResetColor();
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("\n" + "Id pair not found." + "\n");
+                    Console.ResetColor();
+                }
             }
             catch (ValidationException e)
             {
@@ -249,7 +282,7 @@ namespace lab7.UI
             catch (KeyNotFoundException e)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("\n" + "Studentul sau proiectul nu exista" + "\n");
+                Console.WriteLine("\n" + "Studentul or proiectul not found." + "\n");
                 Console.ResetColor();
             }
         }
