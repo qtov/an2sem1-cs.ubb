@@ -187,11 +187,12 @@ select coda from ta where coda = 66; --clustered index seek
 select coda from ta where a2 > 955; --index seek nonclustered
 select a2 from ta order by a2; --index scan nonclustered
 
-select a2, a3 from ta where a2 = 598; --lookup
+select a2 from ta where a2 = 598; --lookup
 
 create unique nonclustered index idx_ncl on tb(b2);
 drop index idx_ncl on tb;
 select b2 from tb where b2 = 1542; --nr of rows read
+--0.007 before, 0.003 after
 
 create nonclustered index idx_ncl_coda on tc(coda);
 create nonclustered index idx_ncl_codb on tc(codb);

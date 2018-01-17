@@ -4,8 +4,24 @@
     <e p="C:\Users\rexu\.Rider2017.3\system\resharper-host\local\Transient\ReSharperHost\v11\SolutionCaches\_lab7.1405498102.00" t="ExcludeRecursive" />
     <e p="C:\Users\rexu\Coding\an2sem1\map\lab7" t="IncludeFlat">
       <e p="lab7" t="IncludeRecursive">
+        <e p="app.config" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
+        <e p="docs" t="Include">
+          <e p="MySqlCommand.xml" t="Include" />
+          <e p="MySqlCommandBuilder.xml" t="Include" />
+          <e p="MySqlConnection.xml" t="Include" />
+          <e p="MySqlConnectionStringBuilder.xml" t="Include" />
+          <e p="MySqlDataAdapter.xml" t="Include" />
+          <e p="MySqlDataReader.xml" t="Include" />
+          <e p="MySqlException.xml" t="Include" />
+          <e p="MySqlHelper.xml" t="Include" />
+          <e p="MySqlParameter.xml" t="Include" />
+          <e p="MySqlParameterCollection.xml" t="Include" />
+          <e p="MySqlTransaction.xml" t="Include" />
+        </e>
         <e p="Domain" t="Include">
+          <e p="Grade.cs" t="Include" />
+          <e p="GradeValidator.cs" t="Include" />
           <e p="IValidator.cs" t="Include" />
           <e p="Project.cs" t="Include" />
           <e p="ProjectValidator.cs" t="Include" />
@@ -13,16 +29,25 @@
           <e p="StudentValidator.cs" t="Include" />
           <e p="ValidationException.cs" t="Include" />
         </e>
+        <e p="Files" t="Include">
+          <e p="Grades" t="Include" />
+          <e p="Projects.txt" t="Include" />
+          <e p="Students.txt" t="Include" />
+        </e>
         <e p="lab7.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
         <e p="Program.cs" t="Include" />
         <e p="Properties" t="Include">
           <e p="AssemblyInfo.cs" t="Include" />
         </e>
         <e p="Repository" t="Include">
+          <e p="AbstractDbRepository.cs" t="Include" />
           <e p="AbstractRepository.cs" t="Include" />
-          <e p="FileProjectRepository.cs" t="Include" />
-          <e p="FileStudentRepository.cs" t="Include" />
+          <e p="DBConnection.cs" t="Include" />
+          <e p="DbGradeRepository.cs" t="Include" />
+          <e p="DbProjectRepository.cs" t="Include" />
+          <e p="DbStudentRepository.cs" t="Include" />
           <e p="HasId.cs" t="Include" />
           <e p="IRepository.cs" t="Include" />
         </e>

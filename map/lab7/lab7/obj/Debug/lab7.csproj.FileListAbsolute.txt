@@ -8,3 +8,6 @@ C:\Users\rexu\Coding\an2sem1\map\lab7\lab7\bin\Debug\lab7.pdb
 C:\Users\rexu\Coding\an2sem1\map\lab7\lab7\obj\Debug\lab7.csprojResolveAssemblyReference.cache
 C:\Users\rexu\Coding\an2sem1\map\lab7\lab7\obj\Debug\lab7.exe
 C:\Users\rexu\Coding\an2sem1\map\lab7\lab7\obj\Debug\lab7.pdb
+C:\Users\rexu\Coding\an2sem1\map\lab7\lab7\bin\Debug\lab7.exe.config
+C:\Users\rexu\Coding\an2sem1\map\lab7\lab7\bin\Debug\MySql.Data.dll
+C:\Users\rexu\Coding\an2sem1\map\lab7\lab7\bin\Debug\MySql.Data.xml

@@ -10,12 +10,16 @@ namespace lab7.Repository
         protected Dictionary<ID, T> lst = new Dictionary<ID, T>();
         protected IValidator<T> _val;
         
+        public AbstractRepository(IValidator<T> val) {
+            _val = val;
+        }
+        
         public long Size()
         {
             return lst.Count;
         }
 
-        public T Save(T t)
+        public virtual T Save(T t)
         {
             _val.Validate(t);
             lst.Add(t.GetId(), t);
@@ -27,7 +31,7 @@ namespace lab7.Repository
             return lst;
         }
 
-        public bool Delete(ID id)
+        public virtual bool Delete(ID id)
         {
             return lst.Remove(id);
         }
@@ -37,11 +41,11 @@ namespace lab7.Repository
             return lst[id];
         }
 
-        public T Update(T t)
+        public virtual T Update(T t)
         {
+            _val.Validate(t);
             if (!lst.ContainsKey(t.GetId()))
                 return t;
-            _val.Validate(t);
             lst[t.GetId()] = t;
             return default(T);
         }

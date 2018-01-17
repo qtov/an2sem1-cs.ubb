@@ -38,7 +38,15 @@ namespace lab7.UI
             }
             catch (ValidationException e)
             {
-                Console.WriteLine(e.Message);
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\n" + e.Message + "\n");
+                Console.ResetColor();
+            }
+            catch (ArgumentException e)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\n" + e.Message + "\n");
+                Console.ResetColor();
             }
         }
         
@@ -65,7 +73,9 @@ namespace lab7.UI
             }
             catch (ValidationException e)
             {
-                Console.WriteLine(e.Message);
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\n" + e.Message + "\n");
+                Console.ResetColor();
             }
         }
 
@@ -80,47 +90,207 @@ namespace lab7.UI
             }
             else
             {
-                Console.WriteLine("Student not found.");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\nStudent not found.\n ");
+                Console.ResetColor();
             }
         }
         
         private void SaveProject()
         {
+            Console.Write("Id: ");
+            string id = Console.ReadLine();
+            
+            Console.Write("Description: ");
+            string desc = Console.ReadLine();
+            
+            Console.Write("Deadline: ");
+            string deadline = Console.ReadLine();
+            
+            try
+            {
+                _s.SaveProject(id, desc, deadline);
+            }
+            catch (ValidationException e)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\n" + e.Message + "\n");
+                Console.ResetColor();
+            }
+            catch (ArgumentException e)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\n" + e.Message + "\n");
+                Console.ResetColor();
+            }
         }
         
         private void ExtendDeadline()
         {
+            Console.Write("Id: ");
+            string id = Console.ReadLine();
+
+            try
+            {
+                if (_s.ExtendProject(id) != null)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("\n" + "Deadline cannot be extended.\n ");
+                    Console.ResetColor();
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("\n" + "Deadline was extended.\n ");
+                    Console.ResetColor();
+                }
+            }
+            catch (ValidationException e)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\n" + e.Message + "\n");
+                Console.ResetColor();
+            }
+            catch (KeyNotFoundException e)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\nId not found.\n ");
+                Console.ResetColor();
+            }
         }
         
         private void DeleteProject()
         {
+            Console.Write("Id: ");
+            string id = Console.ReadLine();
+
+            if (_s.DeleteProject(id))
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("\n" + "Delete successful.\n ");
+                Console.ResetColor();
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\n" + "Project not found.\n ");
+                Console.ResetColor();
+            }
         }
         
         private void SaveGrade()
         {
+            Console.Write("Id Student: ");
+            string idSt = Console.ReadLine();
+            
+            Console.Write("Id Proiect: ");
+            string idPr = Console.ReadLine();
+            
+            Console.Write("Nota: ");
+            string grade = Console.ReadLine();
+            
+            Console.Write("In sapt: ");
+            string inWeek = Console.ReadLine();
+            
+            Console.Write("Obs: ");
+            string obs = Console.ReadLine();
+
+            try
+            {
+                _s.SaveGrade(idSt, idPr, grade, inWeek, obs);
+            }
+            catch (ValidationException e)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\n" + e.Message + "\n");
+                Console.ResetColor();
+            }
+            catch (KeyNotFoundException e)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\n" + "Studentul sau proiectul nu exista" + "\n");
+                Console.ResetColor();
+            }
+            catch (ArgumentException e)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\n" + e.Message + "\n");
+                Console.ResetColor();
+            }
         }
         
         private void UpdateGrade()
         {
+            Console.Write("Id Student: ");
+            string idSt = Console.ReadLine();
+            
+            Console.Write("Id Proiect: ");
+            string idPr = Console.ReadLine();
+            
+            Console.Write("Nota: ");
+            string grade = Console.ReadLine();
+            
+            Console.Write("In sapt: ");
+            string inWeek = Console.ReadLine();
+            
+            Console.Write("Obs: ");
+            string obs = Console.ReadLine();
+
+            try
+            {
+                _s.UpdateGrade(idSt, idPr, grade, inWeek, obs);
+            }
+            catch (ValidationException e)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\n" + e.Message + "\n");
+                Console.ResetColor();
+            }
+            catch (KeyNotFoundException e)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\n" + "Studentul sau proiectul nu exista" + "\n");
+                Console.ResetColor();
+            }
         }
         
         private void DisplayStudents()
         {
-            var lst = _s.GetAllStudent();
+            var lst = _s.GetAllStudents();
+            Console.WriteLine("\n");
             lst.ToList().ForEach(
                 pair =>
                 {
                     Console.WriteLine(pair.Value);
                 }
             );
+            Console.WriteLine("\n");
         }
         
         private void DisplayProjects()
         {
+            var lst = _s.GetAllProjects();
+            Console.WriteLine("\n");
+            lst.ToList().ForEach(
+                pair =>
+                {
+                    Console.WriteLine(pair.Value);
+                }
+            );
+            Console.WriteLine("\n");
         }
         
         private void DisplayGrades()
         {
+            var lst = _s.GetAllGrades();
+            Console.WriteLine("\n");
+            lst.ToList().ForEach(
+                pair =>
+                {
+                    Console.WriteLine(pair.Value);
+                }
+            );
+            Console.WriteLine("\n");
         }
 
         private void ConstructMenu()

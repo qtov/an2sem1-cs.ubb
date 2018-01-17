@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using lab7.Domain;
 using lab7.Repository;
+using MySql.Data.MySqlClient;
 
 namespace lab7
 {
@@ -11,22 +12,22 @@ namespace lab7
     {
         public static void Main(string[] args)
         {
-//            string[] names = { "Burke", "Connor", "Frank", 
-//                "Everett", "Albert", "George", 
-//                "Harris", "David" };
-//            
-//            IEnumerable<string> query = from s in names 
-//                where s.Length == 5
-//                orderby s
-//                select s.ToUpper();
-//
-//            query.ToList().ForEach(Console.WriteLine);
+            try
+            {
+                IRepository<Student, int> stRepo = new DbStudentRepository(new StudentValidator(), "students");
+                IRepository<Project, int> prRepo = new DbProjectRepository(new ProjectValidator(), "projects");
+                IRepository<Grade, string> grRepo = new DbGradeRepository(new GradeValidator(), "grades");
+                Service.Service s = new Service.Service(stRepo, prRepo, grRepo);
+                UI.MainConsole c = new UI.MainConsole(s);
 
-            IRepository<Student, int> stRepo = new FileStudentRepository(new StudentValidator());
-            Service.Service s = new Service.Service(stRepo);
-            UI.MainConsole c = new UI.MainConsole(s);
-
-            c.Start();
+                c.Start();
+            }
+            catch (MySqlException e)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\n" + e.Message + "\n");
+                Console.ResetColor();
+            }
         }
     }
 }
