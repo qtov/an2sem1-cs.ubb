@@ -230,7 +230,7 @@ namespace lab7.UI
             catch (KeyNotFoundException e)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("\n" + "Studentul or project does not exist." + "\n");
+                Console.WriteLine("\n" + "Student or project not found." + "\n");
                 Console.ResetColor();
             }
             catch (ArgumentException e)
@@ -282,7 +282,7 @@ namespace lab7.UI
             catch (KeyNotFoundException e)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("\n" + "Studentul or proiectul not found." + "\n");
+                Console.WriteLine("\n" + "Student or project not found." + "\n");
                 Console.ResetColor();
             }
         }

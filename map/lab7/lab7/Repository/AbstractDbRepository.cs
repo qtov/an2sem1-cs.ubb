@@ -14,7 +14,7 @@ namespace lab7.Repository
         public AbstractDbRepository(IValidator<T> valP, string table) : base(valP)
         {
             _db = DbConnection.Instance();
-            _db.DatabaseName = "lab7map";
+            _db.DatabaseName = "lab7map2";
             _table = table;
         }
         
