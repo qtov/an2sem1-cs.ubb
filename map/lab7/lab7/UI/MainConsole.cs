@@ -320,6 +320,8 @@ namespace lab7.UI
             lst.ToList().ForEach(
                 pair =>
                 {
+                    var st = _s.GetOneStudent(pair.Value.StId);
+                    Console.WriteLine("Student: " + st.Name);
                     Console.WriteLine(pair.Value);
                 }
             );

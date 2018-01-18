@@ -146,7 +146,12 @@ namespace lab7.Service
             var gr = new Grade(st.Id, newPrId, newValue, newInWeek, obs);
             return _grRepo.Update(gr);
         }
-        
+
+        public Student GetOneStudent(int id)
+        {
+            return _stRepo.GetOne(id);
+        }
+
         public Dictionary<int, Student> GetAllStudents()
         {
             return _stRepo.GetAll();
