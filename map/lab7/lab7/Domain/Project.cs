@@ -10,16 +10,6 @@ namespace lab7.Domain
         private string _desc;
         private int _week;
 
-        public int GetId()
-        {
-            return _id;
-        }
-
-        public void SetId(int id)
-        {
-            _id = id;
-        }
-
         public int Id
         {
             get { return _id; }
@@ -60,7 +50,7 @@ namespace lab7.Domain
 
             Project pr = (Project) o;
 
-            if (_id != pr.GetId())
+            if (_id != pr.Id)
                 return false;
             return true;
         }

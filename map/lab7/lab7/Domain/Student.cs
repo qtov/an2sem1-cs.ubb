@@ -41,16 +41,6 @@ namespace lab7.Domain
             set { _guide = value; }
         }
 
-        public void SetId(int idParam)
-        {
-            _id = idParam;
-        }
-
-        public int GetId()
-        {
-            return _id;
-        }
-
         public Student(int idP, string nameP, string groupP, string emailP, string guideP)
         {
             _id = idP;
@@ -75,7 +65,7 @@ namespace lab7.Domain
 
             Student student = (Student) o;
 
-            if (_id != student.GetId() || student._name != null)
+            if (_id != student.Id || student._name != null)
                 return false;
             return true;
         }

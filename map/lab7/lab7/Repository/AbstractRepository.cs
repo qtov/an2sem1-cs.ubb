@@ -22,7 +22,7 @@ namespace lab7.Repository
         public virtual T Save(T t)
         {
             _val.Validate(t);
-            lst.Add(t.GetId(), t);
+            lst.Add(t.Id, t);
             return lst.ContainsValue(t) ? default(T) : t;
         }
 
@@ -44,9 +44,9 @@ namespace lab7.Repository
         public virtual T Update(T t)
         {
             _val.Validate(t);
-            if (!lst.ContainsKey(t.GetId()))
+            if (!lst.ContainsKey(t.Id))
                 return t;
-            lst[t.GetId()] = t;
+            lst[t.Id] = t;
             return default(T);
         }
     }

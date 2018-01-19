@@ -10,16 +10,6 @@ namespace lab7.Domain
         private float _value;
         private int _inWeek;
         private string _obs;
-        
-        public string GetId()
-        {
-            return this._id;
-        }
-
-        public void SetId(string idP)
-        {
-            _id = idP;
-        }
 
         public Grade(int stId, int prId, float value, int inWeek, string obs)
         {
