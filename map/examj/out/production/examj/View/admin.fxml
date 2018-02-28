@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AdminController">
+   <children>
+      <TableView fx:id="activ" layoutX="32.0" layoutY="28.0" prefHeight="345.0" prefWidth="99.0">
+        <columns>
+          <TableColumn prefWidth="98.0" text="Membii activi">
+              <cellValueFactory>
+                  <PropertyValueFactory property="nume" />
+              </cellValueFactory>
+          </TableColumn>
+        </columns>
+      </TableView>
+      <TableView fx:id="usersT" layoutX="149.0" layoutY="28.0" prefHeight="345.0" prefWidth="303.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="user">
+              <cellValueFactory>
+                  <PropertyValueFactory property="user" />
+              </cellValueFactory>
+          </TableColumn>
+          <TableColumn prefWidth="109.0" text="mesaj">
+              <cellValueFactory>
+                  <PropertyValueFactory property="mesaj" />
+              </cellValueFactory>
+          </TableColumn>
+            <TableColumn prefWidth="115.0" text="ora">
+               <cellValueFactory>
+                  <PropertyValueFactory property="data" />
+               </cellValueFactory>
+            </TableColumn>
+        </columns>
+      </TableView>
+      <Button fx:id="retrag" layoutX="457.0" layoutY="45.0" mnemonicParsing="false" text="Retrag" />
+   </children>
+</AnchorPane>

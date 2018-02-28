@@ -1,0 +1,46 @@
+I'm out of ideas, so I'm asking for your help.
+I have a weird problem which I cannot find a cause for no matter how much I search on the internet.
+
+Thing is, I have two laptops:
+
+l1 : HDD and a Kingston HyperX Fury SATA-III SSD (240G)
+
+l2 : HDD and a Samsung 960 evo, nvme SSD (500G)
+
+And I have a procedure to test the performance of the database, which inserts, selects and deletes from 3 different tables, in numbers of 10,000 and 100,000.
+
+l2 was bought after l1 and I tried to migrate everything I had on l1 to l2, including the databases. After running the performance procedure I noticed something weird, l2 was taking way more than l1 was taking. An example being the insertion of 10,000 lines in a table, l1 would take 1 second, where l2 would take 28 seconds. Of course I didn't have the patience to try the 100,000 insertions on l2, where on l1 would take only 40 seconds.
+
+So, I tried to find the root of the cause. Opened task manager (I'm using Windows 10), performance tab and found out that, when it's about to insert, the SSD is writing only with 200kb/s, whereas l1's SSD writes with 4.4MB/s.
+
+[![l2][1]][1]
+
+
+[![enter image description here][2]][2]
+
+
+Of course, I took the possibility that the SSD might be defected so I used 3 benchmarks to see. First one I used was Samsung Magician, CrystalDiskMark and AS SSD Benchmark. All of those 3 benchmarks said there is no problem and my SSD is working at the speed it should be working. I have to note that all my drivers are up to date and the firmware of the ssd is the latest one.
+I tried reinstalling the SQL Server, I tried changing the editions from Enterprise to Developer (Developer being the one I use on l1).
+
+Another thing I tried was, detaching the database. moving it to the other drive and attaching it back. To find out that, it works better than on the ssd.
+
+The results for each performance check (10,000 inserts + select + delete): (IncepeLa = StartsAt, SeIncheieLa = EndsAt)
+
+l2 on SSD:
+[![enter image description here][3]][3]
+
+
+l2 on HDD:
+[![enter image description here][4]][4]
+
+l1 on SSD:
+[![enter image description here][5]][5]
+
+In the end, the question is... Why does SQL Server perform significantly worse on a piece that is supposed to be superior to an HDD?
+
+
+  [1]: https://i.stack.imgur.com/OApbz.png
+  [2]: https://i.stack.imgur.com/ZVkCN.png
+  [3]: https://i.stack.imgur.com/XCTfS.png
+  [4]: https://i.stack.imgur.com/9aCW9.png
+  [5]: https://i.stack.imgur.com/WngcE.png

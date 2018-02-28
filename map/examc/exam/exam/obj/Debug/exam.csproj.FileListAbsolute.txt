@@ -1,0 +1,5 @@
+C:\Users\rexu\Coding\an2sem1\map\examc\exam\exam\bin\Debug\exam.exe
+C:\Users\rexu\Coding\an2sem1\map\examc\exam\exam\bin\Debug\exam.pdb
+C:\Users\rexu\Coding\an2sem1\map\examc\exam\exam\obj\Debug\exam.csprojResolveAssemblyReference.cache
+C:\Users\rexu\Coding\an2sem1\map\examc\exam\exam\obj\Debug\exam.exe
+C:\Users\rexu\Coding\an2sem1\map\examc\exam\exam\obj\Debug\exam.pdb
